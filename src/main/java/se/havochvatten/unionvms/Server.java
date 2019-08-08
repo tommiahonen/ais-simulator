@@ -9,7 +9,7 @@ public class Server implements Runnable {
 	@Override
 	public void run() {
 		try {
-			ServerSocket serverSocket = new ServerSocket(1337);
+			ServerSocket serverSocket = new ServerSocket(8040);
 			while (true) {
 				Socket clientSocket = serverSocket.accept();
 				System.out.println("New client connected..");
