@@ -38,6 +38,9 @@ public class Worker implements Runnable {
 						// Do nothing
 					} else if (aisTimestamp.isBefore(now)) {
 						out.println(encoder.encode(record));
+						if (aisTimestamp.getMinute() % 5 == 0) {
+						    out.println(encoder.encodeType5(record));
+						}
 					} else {
 						Thread.sleep(1000);
 					}
