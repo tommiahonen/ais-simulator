@@ -1,3 +1,5 @@
 target
 .extract
 *.csv
+.idea
+ais-simulator.iml
