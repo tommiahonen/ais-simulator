@@ -16,10 +16,12 @@ public class Worker implements Runnable {
 
 	private Socket clientSocket;
 	private AISEncoder encoder;
+	private int nthPosition;
 
-	public Worker(Socket clientSocket) {
+	public Worker(Socket clientSocket, int nthPosition) {
 		this.clientSocket = clientSocket;
 		this.encoder = new AISEncoder();
+		this.nthPosition = nthPosition;
 	}
 
 	@Override
@@ -30,6 +32,7 @@ public class Worker implements Runnable {
 				out = new PrintWriter(clientSocket.getOutputStream(), true);
 				Reader in = new FileReader("aisdk_20190513.csv");
 				Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
+				long pos = 0;
 				for (CSVRecord record : records) {
 					String timestamp = record.get("# Timestamp");
 					LocalTime now = LocalTime.now(ZoneId.of("UTC"));
@@ -37,13 +40,16 @@ public class Worker implements Runnable {
 					if (aisTimestamp.isBefore(now.minusSeconds(5))) { 
 						// Do nothing
 					} else if (aisTimestamp.isBefore(now)) {
-						out.println(encoder.encode(record));
-						if (aisTimestamp.getMinute() % 5 == 0) {
-						    out.println(encoder.encodeType5(record));
+						if(pos % nthPosition == 0) {
+							out.println(encoder.encode(record));
+							if (aisTimestamp.getMinute() % 5 == 0) {
+								out.println(encoder.encodeType5(record));
+							}
 						}
 					} else {
 						Thread.sleep(1000);
 					}
+					pos++;
 				}
 			}
 		} catch (IOException | InterruptedException e) {

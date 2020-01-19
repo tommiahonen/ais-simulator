@@ -12,8 +12,13 @@ public class Server implements Runnable {
 			ServerSocket serverSocket = new ServerSocket(8040);
 			while (true) {
 				Socket clientSocket = serverSocket.accept();
-				System.out.println("New client connected..");
-				new Thread(new Worker(clientSocket)).start();
+				int nthPos = 1;
+				String ais_nth_pos_str = System.getProperty("ais_nth_pos");
+				if(ais_nth_pos_str != null) {
+					nthPos = Integer.parseInt(ais_nth_pos_str);
+				}
+				System.out.println("New client connected.. using nth_pos = " + nthPos);
+				new Thread(new Worker(clientSocket, nthPos)).start();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
