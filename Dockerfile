@@ -9,5 +9,4 @@ USER ais
 WORKDIR /opt/ais
 RUN curl -LO ftp://ftp.ais.dk/ais_data/aisdk_20190513.csv
 COPY target/ais-simulator.jar ais-simulator.jar
-#COPY aisdk_20190513.csv aisdk_20190513.csv
-CMD ["/opt/java/openjdk/bin/java", "-jar", "./ais-simulator.jar"]
+CMD ["/opt/java/openjdk/bin/java", "-jar", "./ais-simulator.jar", "-D", "ais_nth_pos=3"]
