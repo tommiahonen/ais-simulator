@@ -1,9 +1,5 @@
 package se.havochvatten.unionvms;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-
 public class Starter {
 
     public static void launch() {
