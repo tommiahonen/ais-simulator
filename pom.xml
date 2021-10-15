@@ -18,32 +18,50 @@
 			<artifactId>commons-csv</artifactId>
 			<version>1.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<version>4.0.1</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ais-simulator</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<finalName>ais-simulator.jar</finalName>
-				</configuration>
-				<executions>
-					<execution>
-						<id>build-fat-jar</id>
-						<phase>package</phase>
-						<goals>
-							<goal>exec-war-only</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
 	</build>
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<payaraVersion>5.2021.1</payaraVersion>
+		<final.name>restdemo</final.name>
 	</properties>
+	<profiles>
+		<profile>
+			<id>payara-micro</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>fish.payara.maven.plugins</groupId>
+						<artifactId>payara-micro-maven-plugin</artifactId>
+						<version>1.0.5</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>bundle</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<payaraVersion>${payaraVersion}</payaraVersion>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

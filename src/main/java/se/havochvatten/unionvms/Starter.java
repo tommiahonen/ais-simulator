@@ -4,10 +4,9 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-public class Starter extends HttpServlet {
+public class Starter {
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
+    public static void launch() {
     	Server server = new Server();
     	System.out.println("Starting server..");
         new Thread(server).start();
