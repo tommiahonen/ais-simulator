@@ -11,12 +11,12 @@ import javax.ws.rs.Path;
 @Startup
 @Singleton
 @Path("/state")
-public class ServerState {
+public class AisServerState {
 
     private final Server server;
     private Thread thread;
 
-    public ServerState() {
+    public AisServerState() {
         server = new Server();
         thread = new Thread(server);
     }
