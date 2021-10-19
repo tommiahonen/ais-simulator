@@ -1,7 +1,5 @@
 package se.havochvatten.unionvms.rest;
 
-import se.havochvatten.unionvms.Starter;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

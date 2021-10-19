@@ -1,9 +1,7 @@
 package se.havochvatten.unionvms.rest;
 
 import se.havochvatten.unionvms.Server;
-import se.havochvatten.unionvms.Starter;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ws.rs.GET;
@@ -14,15 +12,29 @@ import javax.ws.rs.Path;
 @Path("/state")
 public class ServerState {
 
+    private final Server server;
+    private Thread thread;
+
+    public ServerState() {
+        server = new Server();
+        thread = new Thread(server);
+    }
+
     @GET
     @Path("/start")
-    public void start() {
-        Starter.launch();
+    public String start() {
+        final String feedback = "Starting server..";
+        System.out.println(feedback);
+        thread.start();
+        return feedback;
     }
 
     @GET
     @Path("/stop")
-    public void stop() {
-        Starter.stop();
+    public String stop() {
+        final String feedback = "Stopping server..";
+        System.out.println(feedback);
+        thread.stop();
+        return feedback;
     }
 }
