@@ -25,7 +25,7 @@ public class AisServerState {
      */
     @PostConstruct
     public void automaticStartUp() {
-        //start();
+        start();
     }
 
     /**
