@@ -72,7 +72,6 @@ public class AisServerState {
 
 
     private boolean serverIsRunning() {
-        //TODO: This is not working correctly: it does not detect if server is already running.
         if (aisServerThread != null && aisServerThread.getState() != Thread.State.TERMINATED) {
             return true;
         } else {
