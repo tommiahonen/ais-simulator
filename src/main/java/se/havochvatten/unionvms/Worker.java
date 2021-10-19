@@ -18,22 +18,28 @@ public class Worker implements Runnable {
 	private AISEncoder encoder;
 	private int nthPosition;
 
+	private boolean interruptRunningProcess;
+
 	public Worker(Socket clientSocket, int nthPosition) {
 		this.clientSocket = clientSocket;
 		this.encoder = new AISEncoder();
 		this.nthPosition = nthPosition;
+		interruptRunningProcess = false;
 	}
 
 	@Override
 	public void run() {
 		try {
 			PrintWriter out;
-			while (true) {
+			while (!interruptRunningProcess) {
 				out = new PrintWriter(clientSocket.getOutputStream(), true);
 				Reader in = new FileReader("aisdk_20190513.csv");
 				Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
 				long pos = 0;
 				for (CSVRecord record : records) {
+					if (interruptRunningProcess) {
+						break;
+					}
 					String timestamp = record.get("# Timestamp");
 					LocalTime now = LocalTime.now(ZoneId.of("UTC"));
 					LocalTime aisTimestamp = LocalTime.parse(timestamp.split("\\s+")[1], DateTimeFormatter.ofPattern("HH:mm:ss"));
@@ -55,5 +61,17 @@ public class Worker implements Runnable {
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Worker has ben shut down.");
+	}
+
+	public void stop() {
+		try {
+			this.clientSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		interruptRunningProcess=true;
+
 	}
 }

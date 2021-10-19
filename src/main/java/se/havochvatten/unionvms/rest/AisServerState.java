@@ -14,7 +14,7 @@ import javax.ws.rs.Path;
 public class AisServerState {
 
     private final Server server;
-    private Thread thread;
+    private final Thread thread;
 
     public AisServerState() {
         server = new Server();
@@ -53,7 +53,7 @@ public class AisServerState {
     public String stop() {
         final String feedback = "Stopping AIS-server..";
         System.out.println(feedback);
-        thread.stop();
+        server.stop();
         return feedback;
     }
 }
