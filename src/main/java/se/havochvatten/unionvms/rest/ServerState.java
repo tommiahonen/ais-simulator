@@ -2,6 +2,7 @@ package se.havochvatten.unionvms.rest;
 
 import se.havochvatten.unionvms.Server;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ws.rs.GET;
@@ -20,19 +21,37 @@ public class ServerState {
         thread = new Thread(server);
     }
 
+    /**
+     *  Start the AIS-server once EE server has started up.
+     */
+    @PostConstruct
+    public void startUp() {
+        start();
+    }
+
+    /**
+     * Start the AIS-server.
+     *
+     * @return String indicating that AIS-server was started.
+     */
     @GET
     @Path("/start")
     public String start() {
-        final String feedback = "Starting server..";
+        final String feedback = "Starting AIS-server..";
         System.out.println(feedback);
         thread.start();
         return feedback;
     }
 
+    /**
+     * Stop the AIS-server.
+     *
+     * @return String indicating that AIS-server was stopped.
+     */
     @GET
     @Path("/stop")
     public String stop() {
-        final String feedback = "Stopping server..";
+        final String feedback = "Stopping AIS-server..";
         System.out.println(feedback);
         thread.stop();
         return feedback;
