@@ -13,8 +13,9 @@ import javax.ws.rs.Path;
 @Path("/state")
 public class AisServerState {
 
-    private Server server;
-    private Thread thread;
+    private Server aisServer;
+    private Thread aisServerThread;
+
 
     public AisServerState() {
     }
@@ -35,14 +36,19 @@ public class AisServerState {
     @GET
     @Path("/start")
     public String start() {
-        // TODO: Is server running? And should it be stopped first before starting it?
-        this.server = new Server();
-        this.thread = new Thread(server);
+        String feedback;
+        if (!serverIsRunning()) {
+            this.aisServer = new Server();
+            this.aisServerThread = new Thread(aisServer);
 
-        final String feedback = "Starting AIS-server..";
-        System.out.println(feedback);
-        thread.start();
-        return feedback;
+            feedback = "Starting AIS-server..";
+            System.out.println(feedback);
+            aisServerThread.start();
+        }
+        else {
+            feedback = "Unable to start server server since it is already running.";
+        }
+            return feedback;
     }
 
     /**
@@ -53,9 +59,31 @@ public class AisServerState {
     @GET
     @Path("/stop")
     public String stop() {
-        final String feedback = "Stopping AIS-server..";
-        System.out.println(feedback);
-        server.stop();
+        String feedback;
+        if (serverIsRunning()) {
+            feedback = "Stopping AIS-server..";
+            System.out.println(feedback);
+            aisServer.stop();
+        } else {
+            feedback = "Unable to stop server server since it is already stopped.";
+        }
         return feedback;
+    }
+
+
+    private boolean serverIsRunning() {
+        //TODO: This is not working correctly: it does not detect if server is already running.
+        return (aisServerThread != null && aisServerThread.getState() == Thread.State.TERMINATED);
+    }
+
+    @GET
+    @Path("/status")
+    public String getStatus() {
+
+        if (serverIsRunning()) {
+            return "AIS-server is running.";
+        } else {
+            return "AIS-server is not running.";
+        }
     }
 }
