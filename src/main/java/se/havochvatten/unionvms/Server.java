@@ -3,6 +3,7 @@ package se.havochvatten.unionvms;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +33,14 @@ public class Server implements Runnable {
 				workers.add(worker);
 				new Thread(worker).start();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			System.out.println("Server shutting down. Will now stop workers too...");
+		} catch (SocketException e) {
+			System.out.println("Server is stopping. Will now stop workers too...");
 			for (Worker worker : workers) {
 				System.out.println("Attempting to stop a worker...");
 				worker.stop();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
