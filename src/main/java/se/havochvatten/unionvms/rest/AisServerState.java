@@ -13,12 +13,10 @@ import javax.ws.rs.Path;
 @Path("/state")
 public class AisServerState {
 
-    private final Server server;
-    private final Thread thread;
+    private Server server;
+    private Thread thread;
 
     public AisServerState() {
-        server = new Server();
-        thread = new Thread(server);
     }
 
     /**
@@ -26,7 +24,7 @@ public class AisServerState {
      */
     @PostConstruct
     public void automaticStartUp() {
-        start();
+        //start();
     }
 
     /**
@@ -37,6 +35,10 @@ public class AisServerState {
     @GET
     @Path("/start")
     public String start() {
+        // TODO: Is server running? And should it be stopped first before starting it?
+        this.server = new Server();
+        this.thread = new Thread(server);
+
         final String feedback = "Starting AIS-server..";
         System.out.println(feedback);
         thread.start();

@@ -35,7 +35,7 @@ public class Server implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println("Server interrupted. Will now stop workers...");
+			System.out.println("Server shutting down. Will now stop workers too...");
 			for (Worker worker : workers) {
 				System.out.println("Attempting to stop a worker...");
 				worker.stop();
