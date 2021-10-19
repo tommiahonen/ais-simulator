@@ -16,15 +16,13 @@ public class ServerState {
 
     @GET
     @Path("/start")
-    public void init() {
-        System.out.println("### At this point server should be started up. ###");
+    public void start() {
         Starter.launch();
     }
 
     @GET
     @Path("/stop")
     public void stop() {
-        System.out.println("### At this point server should be closed down. ###");
         Starter.stop();
     }
 }
