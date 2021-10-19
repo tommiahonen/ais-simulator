@@ -22,10 +22,10 @@ public class ServerState {
     }
 
     /**
-     *  Start the AIS-server once EE server has started up.
+     *  Automatically start the AIS-server once EE server has started up.
      */
     @PostConstruct
-    public void startUp() {
+    public void automaticStartUp() {
         start();
     }
 
