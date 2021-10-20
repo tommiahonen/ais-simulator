@@ -5,10 +5,13 @@ import se.havochvatten.unionvms.Server;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import java.io.File;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
 
 @Startup
 @Singleton
@@ -103,5 +106,15 @@ public class AisServerState {
         } else {
             return "Error: no such file found.";
         }
+    }
+
+    @GET
+    @Consumes((MediaType.TEXT_PLAIN))
+    @Path("{nth}")
+    public String startServerwithNthPosition(@PathParam("nth") int nth) {
+        this.aisServer = new Server(nth);
+        this.aisServerThread = new Thread(aisServer);
+        aisServerThread.start();
+        return "Started a Server with nth position " + nth;
     }
 }
