@@ -7,6 +7,8 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import java.io.File;
 
 @Startup
 @Singleton
@@ -15,7 +17,7 @@ public class AisServerState {
 
     private Server aisServer;
     private Thread aisServerThread;
-
+    private String filename;
 
     public AisServerState() {
     }
@@ -87,6 +89,19 @@ public class AisServerState {
             return "AIS-server is running.";
         } else {
             return "AIS-server is not running.";
+        }
+    }
+
+    @GET
+    @Path("/setFilename/{filename}")
+    public String setFilename(@PathParam("filename") String filename) {
+
+        File f = new File(filename);
+        if(f.exists() && f.isFile()) {
+            this.filename=filename;
+            return "New filename is '" + this.filename + "'.";
+        } else {
+            return "Error: no such file found.";
         }
     }
 }
