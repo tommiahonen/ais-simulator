@@ -5,8 +5,11 @@ import se.havochvatten.unionvms.Server;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
 
 @Startup
 @Singleton
@@ -23,10 +26,10 @@ public class AisServerState {
     /**
      *  Automatically start the AIS-server once EE server has started up.
      */
-    @PostConstruct
-    public void automaticStartUp() {
-        start();
-    }
+    //@PostConstruct
+    //public void automaticStartUp() {
+    //    start();
+    //}
 
     /**
      * Start the AIS-server.
@@ -88,5 +91,15 @@ public class AisServerState {
         } else {
             return "AIS-server is not running.";
         }
+    }
+
+    @GET
+    @Consumes((MediaType.TEXT_PLAIN))
+    @Path("{nth}")
+    public String startServerwithNthPosition(@PathParam("nth") int nth) {
+        this.aisServer = new Server(nth);
+        this.aisServerThread = new Thread(aisServer);
+        aisServerThread.start();
+        return "Started a Server with nth position " + nth;
     }
 }
