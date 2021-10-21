@@ -5,13 +5,11 @@ import se.havochvatten.unionvms.Server;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import java.io.File;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Startup
 @Singleton
@@ -86,6 +84,8 @@ public class AisServerState {
 
     @GET
     @Path("/status")
+    @Consumes({ MediaType.TEXT_PLAIN })
+    @Produces({ MediaType.TEXT_PLAIN })
     public String getStatus() {
 
         if (serverIsRunning()) {
@@ -97,14 +97,16 @@ public class AisServerState {
 
     @GET
     @Path("/setFilename/{filename}")
-    public String setFilename(@PathParam("filename") String filename) {
+    @Consumes({ MediaType.TEXT_PLAIN })
+    @Produces({ MediaType.TEXT_PLAIN })
+    public Response setFilename(@PathParam("filename") String filename) {
 
         File f = new File(filename);
         if(f.exists() && f.isFile()) {
             this.filename=filename;
-            return "New filename is '" + this.filename + "'.";
+            return Response.ok("New filename is '" + this.filename + "'.", MediaType.TEXT_PLAIN_TYPE).build();
         } else {
-            return "Error: no such file found.";
+            return Response.status(404, "Error: no such file found.").build();
         }
     }
 
