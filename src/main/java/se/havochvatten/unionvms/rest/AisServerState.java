@@ -2,6 +2,7 @@ package se.havochvatten.unionvms.rest;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import se.havochvatten.unionvms.Server;
 
 import javax.annotation.PostConstruct;
@@ -42,6 +43,8 @@ public class AisServerState {
             description = "Does nothing if server is already running.")
     @GET
     @Path("/start")
+    @APIResponse(responseCode = "200", description = "Server was started succesfully.")
+    @APIResponse(responseCode = "200", description = "Unable to start server server since it is already stopped.")
     public String start() {
         String feedback;
         if (!serverIsRunning()) {
@@ -66,6 +69,8 @@ public class AisServerState {
             description = "Does nothing if server is already stopped.")
     @GET
     @Path("/stop")
+    @APIResponse(responseCode = "200", description = "Server was stopped succesfully.")
+    @APIResponse(responseCode = "200", description = "Unable to stop server server since it is already stopped.")
     public String stop() {
         String feedback;
         if (serverIsRunning()) {
@@ -93,6 +98,8 @@ public class AisServerState {
     @Path("/status")
     @Consumes({MediaType.TEXT_PLAIN})
     @Produces({MediaType.TEXT_PLAIN})
+    @APIResponse(responseCode = "200", description = "Server is running")
+    @APIResponse(responseCode = "200", description = "Server is not running")
     public String getStatus() {
 
         if (serverIsRunning()) {
@@ -108,6 +115,8 @@ public class AisServerState {
     @Path("/setFilename/{filename}")
     @Consumes({MediaType.TEXT_PLAIN})
     @Produces({MediaType.TEXT_PLAIN})
+    @APIResponse(responseCode = "200", description = "New filename has been set.")
+    @APIResponse(responseCode = "404", description = "File not found")
     public Response setFilename(@Parameter(description = "Name of the CSV datafile.", required = true)
                                 @PathParam("filename") String filename) {
 
