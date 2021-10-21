@@ -11,6 +11,11 @@ public class Server implements Runnable {
 
 	private boolean interruptRunningProcess;
 	private ServerSocket serverSocket;
+	private int nthPos;
+
+	public Server(int nthPos) {
+		this.nthPos = nthPos;
+	}
 
 	public Server() {
 		interruptRunningProcess=false;
@@ -23,7 +28,6 @@ public class Server implements Runnable {
 			serverSocket = new ServerSocket(8040);
 			while (!interruptRunningProcess) {
 				Socket clientSocket = serverSocket.accept();
-				int nthPos = 1;
 				String ais_nth_pos_str = System.getProperty("ais_nth_pos");
 				if(ais_nth_pos_str != null) {
 					nthPos = Integer.parseInt(ais_nth_pos_str);
