@@ -136,12 +136,19 @@ public class AisServerState {
             description = "This makes the server skip some lines in the CSV datafile.")
     @GET
     @Consumes((MediaType.TEXT_PLAIN))
-    @Path("{nth}")
-    public String startServerwithNthPosition(@Parameter(description = "Value of Nth. Must be >= 1. ", required = true)
+    @APIResponse(responseCode = "200", description = "The Nth value has been set.")
+    @APIResponse(responseCode = "404", description = "User has provided an illegal value (not >=1).")
+    @Path("/setnth/{nth}")
+    public Response startServerwithNthPosition(@Parameter(description = "Value of Nth. Must be >= 1. ", required = true)
                                              @PathParam("nth") int nth) {
+
+        if (nth<1) {
+            return Response.status(404).entity("Error: you must use a value >=1.").type(MediaType.TEXT_PLAIN).build();
+        }
+
         this.aisServer = new Server(nth);
         this.aisServerThread = new Thread(aisServer);
         aisServerThread.start();
-        return "Started a Server with nth position " + nth;
+        return Response.ok().entity("Started a Server with nth position " + nth).type(MediaType.TEXT_PLAIN).build();
     }
 }
