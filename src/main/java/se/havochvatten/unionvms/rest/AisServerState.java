@@ -1,6 +1,9 @@
 package se.havochvatten.unionvms.rest;
 
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.info.Info;
+import org.eclipse.microprofile.openapi.annotations.info.License;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import se.havochvatten.unionvms.Server;
@@ -14,6 +17,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@OpenAPIDefinition(
+        info = @Info(
+                title = "AIS-server controller",
+                version = "0.1",
+                description = "This is a REST API for controlling and configuring the AIS-server.",
+
+                license = @License(
+                        name = "License",
+                        url = "https://focusfish.atlassian.net/wiki/spaces/UVMS/overview")
+        )
+)
 @Startup
 @Singleton
 @Path("/state")
@@ -140,9 +154,9 @@ public class AisServerState {
     @APIResponse(responseCode = "404", description = "User has provided an illegal value (not >=1).")
     @Path("/setnth/{nth}")
     public Response startServerwithNthPosition(@Parameter(description = "Value of Nth. Must be >= 1. ", required = true)
-                                             @PathParam("nth") int nth) {
+                                               @PathParam("nth") int nth) {
 
-        if (nth<1) {
+        if (nth < 1) {
             return Response.status(404).entity("Error: you must use a value >=1.").type(MediaType.TEXT_PLAIN).build();
         }
 
