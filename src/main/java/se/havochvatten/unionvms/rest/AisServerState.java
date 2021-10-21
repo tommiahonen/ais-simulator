@@ -94,20 +94,20 @@ public class AisServerState {
         }
     }
 
-    @Operation(summary = "Check is server is running or not.",
+    @Operation(summary = "Check if server is running or not.",
             description = "Server can either be running or completely stopped.")
     @GET
     @Path("/status")
     @Consumes({MediaType.TEXT_PLAIN})
     @Produces({MediaType.TEXT_PLAIN})
     @APIResponse(responseCode = "200", description = "Server is running")
-    @APIResponse(responseCode = "200", description = "Server is not running")
-    public String getStatus() {
+    @APIResponse(responseCode = "404", description = "Server is not running")
+    public Response getStatus() {
 
         if (serverIsRunning()) {
-            return "AIS-server is running.";
+            return Response.ok("AIS-server is now running.", MediaType.TEXT_PLAIN_TYPE).build();
         } else {
-            return "AIS-server is not running.";
+            return Response.status(404, "AIS-server is not running.").build();
         }
     }
 
