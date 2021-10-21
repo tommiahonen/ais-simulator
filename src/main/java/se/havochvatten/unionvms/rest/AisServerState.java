@@ -54,11 +54,11 @@ public class AisServerState {
             feedback = "Starting AIS-server..";
             System.out.println(feedback);
             aisServerThread.start();
-            return Response.ok(feedback, MediaType.TEXT_PLAIN_TYPE).build();
+            return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
 
         } else {
             feedback = "Unable to start server server since it is already running.";
-            return Response.status(404, feedback).build();
+            return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
         }
     }
 
@@ -78,10 +78,10 @@ public class AisServerState {
         if (serverIsRunning()) {
             feedback = "AIS-server has been stopped";
             aisServer.stop();
-            return Response.ok(feedback, MediaType.TEXT_PLAIN_TYPE).build();
+            return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
         } else {
             feedback = "Unable to stop server server since it is already stopped.";
-            return Response.status(404, feedback).build();
+            return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
         }
     }
 
@@ -105,9 +105,9 @@ public class AisServerState {
     public Response getStatus() {
 
         if (serverIsRunning()) {
-            return Response.ok("AIS-server is now running.", MediaType.TEXT_PLAIN_TYPE).build();
+            return Response.ok().entity("AIS-server is now running.").type(MediaType.TEXT_PLAIN).build();
         } else {
-            return Response.status(404, "AIS-server is not running.").build();
+            return Response.status(404).entity("AIS-server is not running.").type(MediaType.TEXT_PLAIN).build();
         }
     }
 
@@ -126,9 +126,9 @@ public class AisServerState {
         File f = new File(filename);
         if (f.exists() && f.isFile()) {
             this.filename = filename;
-            return Response.ok("New filename is '" + this.filename + "'.", MediaType.TEXT_PLAIN_TYPE).build();
+            return Response.ok().entity("New filename is '" + this.filename + "'.").type(MediaType.TEXT_PLAIN).build();
         } else {
-            return Response.status(404, "Error: no such file found.").build();
+            return Response.status(404).entity("Error: no such file found.").type(MediaType.TEXT_PLAIN).build();
         }
     }
 
