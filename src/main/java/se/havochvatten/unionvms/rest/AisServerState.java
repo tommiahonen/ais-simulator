@@ -72,16 +72,17 @@ public class AisServerState {
     @GET
     @Path("/stop")
     @APIResponse(responseCode = "200", description = "Server was stopped succesfully.")
-    @APIResponse(responseCode = "200", description = "Unable to stop server server since it is already stopped.")
-    public String stop() {
+    @APIResponse(responseCode = "404", description = "Unable to stop server server since it is already stopped.")
+    public Response stop() {
         String feedback;
         if (serverIsRunning()) {
             feedback = "AIS-server has been stopped";
             aisServer.stop();
+            return Response.ok(feedback, MediaType.TEXT_PLAIN_TYPE).build();
         } else {
             feedback = "Unable to stop server server since it is already stopped.";
+            return Response.status(404, feedback).build();
         }
-        return feedback;
     }
 
 
