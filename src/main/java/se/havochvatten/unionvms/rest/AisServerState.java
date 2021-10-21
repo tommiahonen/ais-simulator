@@ -1,5 +1,6 @@
 package se.havochvatten.unionvms.rest;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
 import se.havochvatten.unionvms.Server;
 
 import javax.annotation.PostConstruct;
@@ -36,6 +37,8 @@ public class AisServerState {
      *
      * @return String indicating that AIS-server was started.
      */
+    @Operation(summary = "Start the AIS-server.",
+            description = "Does nothing if server is already running.")
     @GET
     @Path("/start")
     public String start() {
@@ -55,10 +58,13 @@ public class AisServerState {
     }
 
     /**
+     *
      * Stop the AIS-server.
      *
      * @return String indicating that AIS-server was stopped.
      */
+    @Operation(summary = "Stops the AIS-server.",
+            description = "Does nothing if server is already stopped.")
     @GET
     @Path("/stop")
     public String stop() {
@@ -82,6 +88,8 @@ public class AisServerState {
         }
     }
 
+    @Operation(summary = "Check is server is running or not.",
+            description = "Server can either be running or completely stopped.")
     @GET
     @Path("/status")
     @Consumes({ MediaType.TEXT_PLAIN })
@@ -95,6 +103,8 @@ public class AisServerState {
         }
     }
 
+    @Operation(summary = "Select datafile that AIS-server reads from.",
+            description = "Select a CSV datafile that AIS-server will read its data from. The file must already be located on the server.")
     @GET
     @Path("/setFilename/{filename}")
     @Consumes({ MediaType.TEXT_PLAIN })
@@ -110,6 +120,8 @@ public class AisServerState {
         }
     }
 
+    @Operation(summary = "Select new Nth value for AIS server.",
+            description = "This makes the server skip some lines in the CSV datafile.")
     @GET
     @Consumes((MediaType.TEXT_PLAIN))
     @Path("{nth}")
