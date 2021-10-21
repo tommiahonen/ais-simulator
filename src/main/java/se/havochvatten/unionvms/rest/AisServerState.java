@@ -1,6 +1,7 @@
 package se.havochvatten.unionvms.rest;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import se.havochvatten.unionvms.Server;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ public class AisServerState {
     }
 
     /**
-     *  Automatically start the AIS-server once EE server has started up.
+     * Automatically start the AIS-server once EE server has started up.
      */
     @PostConstruct
     public void automaticStartUp() {
@@ -50,15 +51,13 @@ public class AisServerState {
             feedback = "Starting AIS-server..";
             System.out.println(feedback);
             aisServerThread.start();
-        }
-        else {
+        } else {
             feedback = "Unable to start server server since it is already running.";
         }
-            return feedback;
+        return feedback;
     }
 
     /**
-     *
      * Stop the AIS-server.
      *
      * @return String indicating that AIS-server was stopped.
@@ -92,8 +91,8 @@ public class AisServerState {
             description = "Server can either be running or completely stopped.")
     @GET
     @Path("/status")
-    @Consumes({ MediaType.TEXT_PLAIN })
-    @Produces({ MediaType.TEXT_PLAIN })
+    @Consumes({MediaType.TEXT_PLAIN})
+    @Produces({MediaType.TEXT_PLAIN})
     public String getStatus() {
 
         if (serverIsRunning()) {
@@ -104,16 +103,18 @@ public class AisServerState {
     }
 
     @Operation(summary = "Select datafile that AIS-server reads from.",
-            description = "Select a CSV datafile that AIS-server will read its data from. The file must already be located on the server.")
+            description = "Select a CSV datafile that AIS-server will read its data from when it is running. The file must already be located on the server.")
     @GET
     @Path("/setFilename/{filename}")
-    @Consumes({ MediaType.TEXT_PLAIN })
-    @Produces({ MediaType.TEXT_PLAIN })
-    public Response setFilename(@PathParam("filename") String filename) {
+    @Consumes({MediaType.TEXT_PLAIN})
+    @Produces({MediaType.TEXT_PLAIN})
+    public Response setFilename(@Parameter(description = "Name of the CSV datafile.", required = true)
+                                @PathParam("filename") String filename) {
+
 
         File f = new File(filename);
-        if(f.exists() && f.isFile()) {
-            this.filename=filename;
+        if (f.exists() && f.isFile()) {
+            this.filename = filename;
             return Response.ok("New filename is '" + this.filename + "'.", MediaType.TEXT_PLAIN_TYPE).build();
         } else {
             return Response.status(404, "Error: no such file found.").build();
@@ -125,7 +126,8 @@ public class AisServerState {
     @GET
     @Consumes((MediaType.TEXT_PLAIN))
     @Path("{nth}")
-    public String startServerwithNthPosition(@PathParam("nth") int nth) {
+    public String startServerwithNthPosition(@Parameter(description = "Value of Nth. Must be >= 1. ", required = true)
+                                             @PathParam("nth") int nth) {
         this.aisServer = new Server(nth);
         this.aisServerThread = new Thread(aisServer);
         aisServerThread.start();
