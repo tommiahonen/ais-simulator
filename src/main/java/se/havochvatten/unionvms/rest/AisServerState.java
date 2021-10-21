@@ -44,8 +44,8 @@ public class AisServerState {
     @GET
     @Path("/start")
     @APIResponse(responseCode = "200", description = "Server was started succesfully.")
-    @APIResponse(responseCode = "200", description = "Unable to start server server since it is already stopped.")
-    public String start() {
+    @APIResponse(responseCode = "404", description = "Unable to start server server since it is already running.")
+    public Response start() {
         String feedback;
         if (!serverIsRunning()) {
             this.aisServer = new Server();
@@ -54,10 +54,12 @@ public class AisServerState {
             feedback = "Starting AIS-server..";
             System.out.println(feedback);
             aisServerThread.start();
+            return Response.ok(feedback, MediaType.TEXT_PLAIN_TYPE).build();
+
         } else {
             feedback = "Unable to start server server since it is already running.";
+            return Response.status(404, feedback).build();
         }
-        return feedback;
     }
 
     /**
@@ -74,8 +76,7 @@ public class AisServerState {
     public String stop() {
         String feedback;
         if (serverIsRunning()) {
-            feedback = "Stopping AIS-server..";
-            System.out.println(feedback);
+            feedback = "AIS-server has been stopped";
             aisServer.stop();
         } else {
             feedback = "Unable to stop server server since it is already stopped.";
