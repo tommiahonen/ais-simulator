@@ -11,7 +11,7 @@ public class Server implements Runnable {
 
 	private boolean interruptRunningProcess;
 	private ServerSocket serverSocket;
-	private int nthPos;
+	private int nthPos = 1;
 
 	public Server(int nthPos) {
 		this.nthPos = nthPos;
