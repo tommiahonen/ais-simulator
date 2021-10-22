@@ -126,7 +126,7 @@ public class AisServerState {
     }
 
     @Operation(summary = "Select datafile that AIS-server reads from.",
-            description = "Select a CSV datafile that AIS-server will read its data from when it is running. The file must already be located on the server.")
+            description = "The selected file must already be located on the server.")
     @GET
     @Path("/setFilename/{filename}")
     @Consumes({MediaType.TEXT_PLAIN})
