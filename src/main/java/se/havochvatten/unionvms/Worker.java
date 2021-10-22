@@ -15,7 +15,7 @@ public class Worker implements Runnable {
 	private AISEncoder encoder;
 	private int nthPosition;
 
-	private boolean interruptRunningProcess;
+	private boolean terminateProcess;
 	private String filename;
 
 	public Worker(Socket clientSocket, int nthPosition, String filename) {
@@ -23,14 +23,14 @@ public class Worker implements Runnable {
 		this.clientSocket = clientSocket;
 		this.encoder = new AISEncoder();
 		this.nthPosition = nthPosition;
-		interruptRunningProcess = false;
+		terminateProcess = false;
 	}
 
 	@Override
 	public void run() {
 		try {
 			PrintWriter out;
-			while (!interruptRunningProcess) {
+			while (!terminateProcess) {
 				out = new PrintWriter(clientSocket.getOutputStream(), true);
 				if (this.filename==null) {
 					throw new FileNotFoundException();
@@ -39,7 +39,7 @@ public class Worker implements Runnable {
 				Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
 				long pos = 0;
 				for (CSVRecord record : records) {
-					if (interruptRunningProcess) {
+					if (terminateProcess) {
 						break;
 					}
 					String timestamp = record.get("# Timestamp");
@@ -76,7 +76,7 @@ public class Worker implements Runnable {
 			e.printStackTrace();
 		}
 
-		interruptRunningProcess=true;
+		terminateProcess=true;
 	}
 
 }
