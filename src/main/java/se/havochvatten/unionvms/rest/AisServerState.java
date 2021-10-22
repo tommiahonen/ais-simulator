@@ -166,6 +166,9 @@ public class AisServerState {
         }
 
         this.nth = nth;
+
+        //TODO: If Server is already running at this moment then the filename used by its Worker instances should now be changed.
+
         return Response.ok().entity("Nth value is now set to " + nth).type(MediaType.TEXT_PLAIN).build();
     }
 }
