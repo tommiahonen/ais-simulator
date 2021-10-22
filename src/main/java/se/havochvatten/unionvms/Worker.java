@@ -1,9 +1,6 @@
 package se.havochvatten.unionvms;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Reader;
+import java.io.*;
 import java.net.Socket;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -19,8 +16,10 @@ public class Worker implements Runnable {
 	private int nthPosition;
 
 	private boolean interruptRunningProcess;
+	private String filename;
 
-	public Worker(Socket clientSocket, int nthPosition) {
+	public Worker(Socket clientSocket, int nthPosition, String filename) {
+		this.filename=filename;
 		this.clientSocket = clientSocket;
 		this.encoder = new AISEncoder();
 		this.nthPosition = nthPosition;
@@ -33,7 +32,10 @@ public class Worker implements Runnable {
 			PrintWriter out;
 			while (!interruptRunningProcess) {
 				out = new PrintWriter(clientSocket.getOutputStream(), true);
-				Reader in = new FileReader("aisdk_20190513.csv");
+				if (this.filename==null) {
+					throw new FileNotFoundException();
+				}
+				Reader in = new FileReader(this.filename);
 				Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
 				long pos = 0;
 				for (CSVRecord record : records) {
@@ -43,7 +45,7 @@ public class Worker implements Runnable {
 					String timestamp = record.get("# Timestamp");
 					LocalTime now = LocalTime.now(ZoneId.of("UTC"));
 					LocalTime aisTimestamp = LocalTime.parse(timestamp.split("\\s+")[1], DateTimeFormatter.ofPattern("HH:mm:ss"));
-					if (aisTimestamp.isBefore(now.minusSeconds(5))) { 
+					if (aisTimestamp.isBefore(now.minusSeconds(5))) {
 						// Do nothing
 					} else if (aisTimestamp.isBefore(now)) {
 						if(pos % nthPosition == 0) {
@@ -58,7 +60,10 @@ public class Worker implements Runnable {
 					pos++;
 				}
 			}
-		} catch (IOException | InterruptedException e) {
+		} catch (IOException e) {
+			System.out.println("Error: Worker is unable to read from file '" + filename + "'");
+			//e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		System.out.println("Worker has ben shut down.");
@@ -72,6 +77,6 @@ public class Worker implements Runnable {
 		}
 
 		interruptRunningProcess=true;
-
 	}
+
 }

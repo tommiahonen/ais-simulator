@@ -12,10 +12,12 @@ public class Server implements Runnable {
     private boolean interruptRunningProcess;
     private ServerSocket serverSocket;
     private int nthPos = 1;
+    private String filename;
 
-    public Server(int nthPos) {
+    public Server(int nthPos, String filename) {
         this();
         this.nthPos = nthPos;
+        this.filename = filename;
     }
 
     public Server() {
@@ -34,7 +36,7 @@ public class Server implements Runnable {
                     nthPos = Integer.parseInt(ais_nth_pos_str);
                 }
                 System.out.println("New client connected.. using nth_pos = " + nthPos);
-                Worker worker = new Worker(clientSocket, nthPos);
+                Worker worker = new Worker(clientSocket, nthPos, filename);
                 workers.add(worker);
                 new Thread(worker).start();
             }

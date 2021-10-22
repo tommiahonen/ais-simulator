@@ -38,6 +38,8 @@ public class AisServerState {
     private String filename;
 
     public AisServerState() {
+        // First time server is started, if nothing is changed before that, it will use these values.
+        filename = "aisdk_20190513.csv";
     }
 
     /**
@@ -62,7 +64,7 @@ public class AisServerState {
     public Response start() {
         String feedback;
         if (!serverIsRunning()) {
-            this.aisServer = new Server();
+            this.aisServer = new Server(3, this.filename);
             this.aisServerThread = new Thread(aisServer);
 
             feedback = "Starting AIS-server..";
@@ -142,6 +144,7 @@ public class AisServerState {
             this.filename = filename;
             return Response.ok().entity("New filename is '" + this.filename + "'.").type(MediaType.TEXT_PLAIN).build();
         } else {
+            this.filename = "";
             return Response.status(404).entity("Error: no such file found.").type(MediaType.TEXT_PLAIN).build();
         }
     }
@@ -160,7 +163,7 @@ public class AisServerState {
             return Response.status(404).entity("Error: you must use a value >=1.").type(MediaType.TEXT_PLAIN).build();
         }
 
-        this.aisServer = new Server(nth);
+        this.aisServer = new Server(nth, this.filename);
         this.aisServerThread = new Thread(aisServer);
         aisServerThread.start();
         return Response.ok().entity("Started a Server with nth position " + nth).type(MediaType.TEXT_PLAIN).build();
