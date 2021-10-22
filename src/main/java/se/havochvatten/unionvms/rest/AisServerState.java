@@ -144,6 +144,7 @@ public class AisServerState {
         File f = new File(filename);
         if (f.exists() && f.isFile()) {
             this.filename = filename;
+            this.aisServer.setFilename(filename);
             return Response.ok().entity("New filename is '" + this.filename + "'.").type(MediaType.TEXT_PLAIN).build();
         } else {
             this.filename = "";

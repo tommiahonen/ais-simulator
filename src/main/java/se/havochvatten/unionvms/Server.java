@@ -13,6 +13,7 @@ public class Server implements Runnable {
     private ServerSocket serverSocket;
     private int nthPos = 1;
     private String filename;
+    List<Worker> workers;
 
     public Server(int nthPos, String filename) {
         this();
@@ -22,11 +23,12 @@ public class Server implements Runnable {
 
     public Server() {
         interruptRunningProcess = false;
+        workers = new ArrayList<>();
     }
 
     @Override
     public void run() {
-        List<Worker> workers = new ArrayList<>();
+
         try {
             serverSocket = new ServerSocket(8040);
             while (!interruptRunningProcess) {
@@ -59,5 +61,12 @@ public class Server implements Runnable {
         }
         interruptRunningProcess = true;
         System.out.println("Server.stop() called.");
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+        for (Worker worker : workers) {
+            worker.setFilename(filename);
+        }
     }
 }
