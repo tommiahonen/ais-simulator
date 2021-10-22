@@ -36,10 +36,12 @@ public class AisServerState {
     private Server aisServer;
     private Thread aisServerThread;
     private String filename;
+    private int nth;
 
     public AisServerState() {
         // First time server is started, if nothing is changed before that, it will use these values.
         filename = "aisdk_20190513.csv";
+        nth = 3;
     }
 
     /**
@@ -64,7 +66,7 @@ public class AisServerState {
     public Response start() {
         String feedback;
         if (!serverIsRunning()) {
-            this.aisServer = new Server(3, this.filename);
+            this.aisServer = new Server(nth, this.filename);
             this.aisServerThread = new Thread(aisServer);
 
             feedback = "Starting AIS-server..";
@@ -156,16 +158,14 @@ public class AisServerState {
     @APIResponse(responseCode = "200", description = "The Nth value has been set.")
     @APIResponse(responseCode = "404", description = "User has provided an illegal value (not >=1).")
     @Path("/setnth/{nth}")
-    public Response startServerwithNthPosition(@Parameter(description = "Value of Nth. Must be >= 1. ", required = true)
-                                               @PathParam("nth") int nth) {
+    public Response setNthValue(@Parameter(description = "Value of Nth. Must be >= 1. ", required = true)
+                                @PathParam("nth") int nth) {
 
         if (nth < 1) {
             return Response.status(404).entity("Error: you must use a value >=1.").type(MediaType.TEXT_PLAIN).build();
         }
 
-        this.aisServer = new Server(nth, this.filename);
-        this.aisServerThread = new Thread(aisServer);
-        aisServerThread.start();
-        return Response.ok().entity("Started a Server with nth position " + nth).type(MediaType.TEXT_PLAIN).build();
+        this.nth = nth;
+        return Response.ok().entity("Nth value is now set to " + nth).type(MediaType.TEXT_PLAIN).build();
     }
 }
