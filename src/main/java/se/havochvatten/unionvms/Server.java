@@ -53,14 +53,14 @@ public class Server implements Runnable {
         }
     }
 
-    public void stop() {
+    public void shutdown() {
         try {
             this.serverSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         interruptRunningProcess = true;
-        System.out.println("Server.stop() called.");
+        System.out.println("Server.shutdown() called.");
     }
 
     public void setFilename(String filename) {

@@ -81,24 +81,23 @@ public class AisServerState {
     }
 
     /**
-     * Stop the AIS-server.
+     * Shut down the AIS-server.
      *
-     * @return String indicating that AIS-server was stopped.
      */
     @Operation(summary = "Stops the AIS-server.",
-            description = "Does nothing if server is already stopped.")
+            description = "Does nothing if server is already shut-down.")
     @GET
-    @Path("/stop")
-    @APIResponse(responseCode = "200", description = "Server was stopped succesfully.")
-    @APIResponse(responseCode = "404", description = "Unable to stop server server since it is already stopped.")
-    public Response stop() {
+    @Path("/shutdown")
+    @APIResponse(responseCode = "200", description = "Server was shut down succesfully.")
+    @APIResponse(responseCode = "404", description = "Unable to shut down server since it is already shut down.")
+    public Response shutdown() {
         String feedback;
         if (serverIsRunning()) {
-            feedback = "AIS-server has been stopped";
-            aisServer.stop();
+            feedback = "AIS-server has been shutdown";
+            aisServer.shutdown();
             return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
         } else {
-            feedback = "Unable to stop server server since it is already stopped.";
+            feedback = "Unable to shut down server server since it is already shut down.";
             return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
         }
     }
