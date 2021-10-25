@@ -11,7 +11,7 @@ public class Server implements Runnable {
 
     private boolean interruptRunningProcess;
     private ServerSocket serverSocket;
-    private int nthPos = 1;
+    private int nthPos;
     private String filename;
     List<Worker> workers;
 
@@ -24,6 +24,7 @@ public class Server implements Runnable {
     public Server() {
         interruptRunningProcess = false;
         workers = new ArrayList<>();
+        nthPos = 1;
     }
 
     @Override
