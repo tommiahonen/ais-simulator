@@ -10,6 +10,7 @@ import java.util.List;
 public class Server implements Runnable {
 
     private boolean interruptRunningProcess;
+    private boolean suspendRunningProcess;
     private ServerSocket serverSocket;
     private int nthPos = 1;
     private String filename;
@@ -74,6 +75,30 @@ public class Server implements Runnable {
         this.nthPos = nthPos;
         for (Worker worker : workers) {
             worker.setNthPos(this.nthPos);
+        }
+    }
+
+    public boolean isPaused() {
+        synchronized (this) {
+            return suspendRunningProcess;
+        }
+    }
+
+    public void pause() {
+        synchronized (this) {
+            suspendRunningProcess = true;
+            for (Worker worker : workers) {
+                worker.pause();
+            }
+        }
+    }
+
+    public void unpause() {
+        synchronized (this) {
+            suspendRunningProcess = false;
+            for (Worker worker : workers) {
+                worker.unpause();
+            }
         }
     }
 }

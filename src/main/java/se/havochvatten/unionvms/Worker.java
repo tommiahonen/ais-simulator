@@ -20,12 +20,15 @@ public class Worker implements Runnable {
     private String filename;
     private Reader in;
 
+    boolean threadSuspended;
+
     public Worker(Socket clientSocket, int nthPosition, String filename) {
         this.filename = filename;
         this.clientSocket = clientSocket;
         this.encoder = new AISEncoder();
         this.nthPosition = nthPosition;
         terminateProcess = false;
+        threadSuspended = false;
     }
 
     @Override
@@ -43,6 +46,11 @@ public class Worker implements Runnable {
                 for (CSVRecord record : records) {
                     if (terminateProcess || reloadFile) {
                         break;
+                    }
+                    // if thread paused: wait for int to be unpaused.
+                    synchronized (this) {
+                        while (threadSuspended)
+                            wait();
                     }
                     String timestamp = record.get("# Timestamp");
                     LocalTime now = LocalTime.now(ZoneId.of("UTC"));
@@ -109,4 +117,12 @@ public class Worker implements Runnable {
         this.nthPosition=setNthPos;
     }
 
+    public void pause() {
+        threadSuspended = true;
+    }
+
+    public synchronized void unpause() {
+        threadSuspended = false;
+        notify();
+    }
 }
