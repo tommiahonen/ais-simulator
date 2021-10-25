@@ -104,5 +104,9 @@ public class Worker implements Runnable {
         return new FileReader(this.filename);
     }
 
+    public void setNthPos(int setNthPos) {
+        System.out.println("Setting Nth position for Worker to " + setNthPos);
+        this.nthPosition=setNthPos;
+    }
 
 }

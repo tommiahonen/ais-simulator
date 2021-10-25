@@ -166,9 +166,9 @@ public class AisServerState {
             return Response.status(404).entity("Error: you must use a value >=1.").type(MediaType.TEXT_PLAIN).build();
         }
 
+        // Change nth value of Server and it's Workers
         this.nth = nth;
-
-        //TODO: If Server is already running at this moment then the nth value used by its Worker instances should now be changed.
+        aisServer.setNthPos(this.nth);
 
         return Response.ok().entity("Nth value is now set to " + nth).type(MediaType.TEXT_PLAIN).build();
     }

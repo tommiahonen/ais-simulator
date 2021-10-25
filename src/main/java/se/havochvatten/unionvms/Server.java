@@ -17,7 +17,7 @@ public class Server implements Runnable {
 
     public Server(int nthPos, String filename) {
         this();
-        this.nthPos = nthPos;
+        setNthPos(nthPos);
         this.filename = filename;
     }
 
@@ -67,6 +67,13 @@ public class Server implements Runnable {
         this.filename = filename;
         for (Worker worker : workers) {
             worker.setFilename(filename);
+        }
+    }
+
+    public void setNthPos(int nthPos) {
+        this.nthPos = nthPos;
+        for (Worker worker : workers) {
+            worker.setNthPos(this.nthPos);
         }
     }
 }
