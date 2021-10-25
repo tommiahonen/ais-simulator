@@ -49,7 +49,7 @@ public class AisServerState {
      */
     @PostConstruct
     public void automaticStartUp() {
-        start();
+        launch();
     }
 
     /**
@@ -60,22 +60,22 @@ public class AisServerState {
     @Operation(summary = "Start the AIS-server.",
             description = "Does nothing if server is already running.")
     @GET
-    @Path("/start")
+    @Path("/launch")
     @APIResponse(responseCode = "200", description = "Server was started succesfully.")
     @APIResponse(responseCode = "404", description = "Unable to start server server since it is already running.")
-    public Response start() {
+    public Response launch() {
         String feedback;
         if (!serverIsRunning()) {
             this.aisServer = new Server(nth, this.filename);
             this.aisServerThread = new Thread(aisServer);
 
-            feedback = "Starting AIS-server..";
+            feedback = "Launching AIS-server..";
             System.out.println(feedback);
             aisServerThread.start();
             return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
 
         } else {
-            feedback = "Unable to start server server since it is already running.";
+            feedback = "Unable to launch server server since it is already running.";
             return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
         }
     }
