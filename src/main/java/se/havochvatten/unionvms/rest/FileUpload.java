@@ -25,32 +25,16 @@ public class FileUpload {
         try{
             Part file = request.getPart("newdatafile"); //file is the name of the parameter on the request.
             filename = file.getSubmittedFileName();
-
-            String fullFilepath = new File(".").getCanonicalPath() + "/" + filename;
             file.write(filename);
 
-            /*
-            InputStream fileContent = file.getInputStream();
+            System.out.println("File " + filename + "was uploaded succesfully.");
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fileContent, StandardCharsets.UTF_8.name()));
-            StringBuilder value = new StringBuilder();
-
-            char[] buffer = new char[1024];
-            for (int length; (length = reader.read(buffer)) > 0; )
-            {
-                value.append(buffer, 0, length);
-            }
-            System.out.println(value);
-            */
-
-            return Response.ok().entity("File " + fullFilepath + " was uploaded successfully.").build();
+            return Response.ok().entity("File " + filename + " was uploaded successfully.").build();
         }
         catch (IOException | ServletException ex){
             //Do some exception management
             ex.printStackTrace();
-            return Response.status(404).entity("Error while saving datafile.").build();
+            return Response.status(404).entity("Error while saving file " + ex.getMessage() + " to filesystem on host. Does directory exist and are you able to write to it?").build();
         }
-
-
     }
 }
