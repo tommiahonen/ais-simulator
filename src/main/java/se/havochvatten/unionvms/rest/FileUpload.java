@@ -9,6 +9,7 @@ import javax.servlet.http.Part;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,9 +23,10 @@ public class FileUpload {
     @Path("/upload")
     @Operation(summary = "Upload a new CSV datafile to the AIS-server.",
             description = "TODO: does not yet change which datafile is read by server. This feature is coming soon.")
+    @Consumes({MediaType.MULTIPART_FORM_DATA})
+    @Produces({MediaType.TEXT_PLAIN})
     @APIResponse(responseCode = "200", description = "New file has been uploaded.")
     @APIResponse(responseCode = "404", description = "Upload failed")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadFile(
             @Context HttpServletRequest request
     ) {
