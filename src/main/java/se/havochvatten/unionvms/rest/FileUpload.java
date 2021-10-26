@@ -1,5 +1,8 @@
 package se.havochvatten.unionvms.rest;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -17,6 +20,10 @@ public class FileUpload {
 
     @POST
     @Path("/upload")
+    @Operation(summary = "Upload a new CSV datafile to the AIS-server.",
+            description = "TODO: does not yet change which datafile is read by server. This feature is coming soon.")
+    @APIResponse(responseCode = "200", description = "New file has been uploaded.")
+    @APIResponse(responseCode = "404", description = "Upload failed")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadFile(
             @Context HttpServletRequest request
