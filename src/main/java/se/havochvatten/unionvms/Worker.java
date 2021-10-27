@@ -49,7 +49,7 @@ public class Worker implements Runnable {
                     }
                     // if thread paused: wait for int to be unpaused.
                     synchronized (this) {
-                        while (threadSuspended)
+                        if (threadSuspended)
                             wait();
                     }
                     String timestamp = record.get("# Timestamp");
