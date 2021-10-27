@@ -12,6 +12,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>se.havochvatten.unionvms.rest.RestApplication</servlet-name>
-        <url-pattern>/data/*</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 </web-app>
