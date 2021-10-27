@@ -16,7 +16,8 @@
     <button><a href="rest/state/pause">Pause</a></button>
     <button><a href="rest/state/status">Status</a></button>
 </div>
-<hr>
+
+<hr/>
 <div>
     <form method="get" action="/rest/state/setnth/">
         <label>Choose Nth position:</label>
@@ -24,18 +25,26 @@
         <input type="submit" value="Update">
     </form>
 </div>
-<hr>
+
+<hr/>
 <div>
     <form action="http://localhost:8080/rest/files/upload" method="post" enctype="multipart/form-data">
-        <label for="avatar">Upload new CSV file to server: </label>
+        <label for="fileupload">Upload new CSV file to server: </label>
         <input type="file"
-               id="avatar"
+               id="fileupload"
                name="newdatafile"
                accept=".csv">
         <input type="submit" value="Upload file">
     </form>
 </div>
-<hr>
+
+<hr/>
+<label for="setfilename">Set filename of .CSV datafile to read from: </label>
+<input type="text"
+       id="setfilename"
+       name="datafilename">
+<input type="button" value="Update">
+<hr/>
 
 </body>
 </html>
