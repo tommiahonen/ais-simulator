@@ -5,8 +5,8 @@
         <multipart-config>
             <!-- Uploaded files are saved in this folder. Please make sure that this folder exists other wise uploads won't work. -->
             <location>/tmp/uvms/</location>
-            <max-file-size>35000000</max-file-size> <!--in bytes-->
-            <max-request-size>218018841</max-request-size> <!--in bytes-->
+            <max-file-size>4000000000</max-file-size> <!--in bytes-->
+            <max-request-size>4000000000</max-request-size> <!--in bytes-->
             <file-size-threshold>0</file-size-threshold> <!--in bytes-->
         </multipart-config>
     </servlet>
