@@ -9,36 +9,33 @@
 
 <h2>AIS-simulator</h2>
 
-
+<hr>
 <div>
+    <label>Change simulator state:</label>
     <button><a href="rest/state/start">Start</a></button>
     <button><a href="rest/state/pause">Pause</a></button>
     <button><a href="rest/state/status">Status</a></button>
 </div>
-<br/>
-
+<hr>
 <div>
     <form method="get" action="/rest/state/setnth/">
-        <label>Choose nth position:</label><br>
-        <input class="rest" type=number value="5" size="4" style="width: 30px;"><br>
-        <input type="submit" value="Change">
+        <label>Choose Nth position:</label>
+        <input class="rest" type=number value="5" size="4" style="width: 30px;">
+        <input type="submit" value="Update">
     </form>
 </div>
-
-<br/>
-
+<hr>
 <div>
     <form action="http://localhost:8080/rest/files/upload" method="post" enctype="multipart/form-data">
-        <label for="avatar">Choose CSV file</label><br/>
+        <label for="avatar">Upload new CSV file to server: </label>
         <input type="file"
+               id="avatar"
                name="newdatafile"
-               newdatafile
                accept=".csv">
-        <br/>
-        <input type="submit" value="Ladda upp">
+        <input type="submit" value="Upload file">
     </form>
 </div>
-
+<hr>
 
 </body>
 </html>
