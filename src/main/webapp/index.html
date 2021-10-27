@@ -28,10 +28,15 @@
 <br/>
 
 <div>
-    <label for="avatar">Choose CSV file</label><br/>
-    <input type="file"
-           id="avatar" name="avatar"
-           accept="*/csv">
+    <form action="http://localhost:8080/rest/files/upload" method="post" enctype="multipart/form-data">
+        <label for="avatar">Choose CSV file</label><br/>
+        <input type="file"
+               name="newdatafile"
+               newdatafile
+               accept=".csv">
+        <br/>
+        <input type="submit" value="Ladda upp">
+    </form>
 </div>
 
 
