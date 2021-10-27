@@ -2,18 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Eclipse MicroProfile demo</title>
+    <title>AIS</title>
 </head>
 <body>
 
-<h2>MicroProfile</h2>
-
-<a href="data/hello" target="_blank" >Hello JAX-RS endpoint</a> <br/>
+<h2>AIS-simulator</h2>
 
 
 
+<div>
+    <button><a href="rest/state/start">Start</a></button>
+    <button><a href="rest/state/pause">Pause</a></button>
+    <button><a href="rest/state/status">Status</a></button>
+</div>
 
+<br/>
+<br/>
 
+<div>
+<label for="avatar">Choose CSV file</label><br/>
+<input type="file"
+       id="avatar" name="avatar"
+       accept="*/csv">
+</div>
 
 
 

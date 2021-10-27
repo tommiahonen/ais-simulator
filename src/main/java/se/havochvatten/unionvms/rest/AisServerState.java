@@ -1,5 +1,6 @@
 package se.havochvatten.unionvms.rest;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.info.Info;
@@ -38,6 +39,7 @@ public class AisServerState {
     private Thread aisServerThread;
     private String filename;
     private int nth;
+    private static final String UPLOAD_FOLDER = "ftp://ftp.ais.dk/ais_data/";
 
     public AisServerState() {
         // First time server is started, if nothing is changed before that, it will use these values.
@@ -204,5 +206,24 @@ public class AisServerState {
         aisServer.setNthPos(this.nth);
 
         return Response.ok().entity("Nth value is now set to " + nth).type(MediaType.TEXT_PLAIN).build();
+
+        }
+
+
+    // TODO
+    // CREATE METHOD TO UPLOAD A CSV FILE TYO SERVER
+    // UPLOAD FOLDER SET IN FIELD
+
+    @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @APIResponse(responseCode = "200", description = "The Nth value has been set.")
+    @APIResponse(responseCode = "404", description = "User has provided an illegal value (not >=1).")
+    @Path("/upload")
+    public Response uploadFile() {
+        String UPLOAD_FOLDER;
+        return Response.ok().entity("TODO " + nth).type(MediaType.TEXT_PLAIN).build();
+
     }
 }
+
+
