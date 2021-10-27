@@ -93,7 +93,6 @@ public class AisServerState {
 
     /**
      * Shut down the AIS-server.
-     *
      */
     @Operation(summary = "Stops the AIS-server.",
             description = "Does nothing if server is already shut-down.")
@@ -153,14 +152,22 @@ public class AisServerState {
     @Consumes({MediaType.TEXT_PLAIN})
     @Produces({MediaType.TEXT_PLAIN})
     @APIResponse(responseCode = "200", description = "Server is running")
+    @APIResponse(responseCode = "404", description = "Server is running but its workers are paused")
     @APIResponse(responseCode = "404", description = "Server is not running")
     public Response getStatus() {
 
-        if (serverIsRunning()) {
-            return Response.ok().entity("AIS-server is now running.").type(MediaType.TEXT_PLAIN).build();
-        } else {
+        String feedback;
+        if (!serverIsRunning()) {
             return Response.status(404).entity("AIS-server is not running.").type(MediaType.TEXT_PLAIN).build();
         }
+
+        if (aisServer.isPaused()) {
+            feedback = "AIS-server is running but its workers are paused.";
+            return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
+        }
+
+        feedback = "Both AIS-server and its workers (if any) are running.";
+        return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
     }
 
     @Operation(summary = "Select datafile that AIS-server reads from. Filename should not contain name of directories: only the filename.",
@@ -207,7 +214,7 @@ public class AisServerState {
 
         return Response.ok().entity("Nth value is now set to " + nth).type(MediaType.TEXT_PLAIN).build();
 
-        }
+    }
 
 
     // TODO
