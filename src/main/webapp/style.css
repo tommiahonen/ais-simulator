@@ -9,3 +9,7 @@ h2 {
 button {
     border-radius: 3em;
 }
+
+input.rest[type=number]::-webkit-inner-spin-button {
+    opacity: 1
+}
