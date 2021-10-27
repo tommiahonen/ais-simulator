@@ -63,6 +63,7 @@ public class Worker implements Runnable {
                             if (aisTimestamp.getMinute() % 5 == 0) {
                                 out.println(encoder.encodeType5(record));
                             }
+                            System.out.println("Worker is on pos=" + pos);
                         }
                     } else {
                         Thread.sleep(1000);

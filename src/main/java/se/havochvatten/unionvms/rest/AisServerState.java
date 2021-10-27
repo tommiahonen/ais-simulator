@@ -49,7 +49,7 @@ public class AisServerState {
      */
     @PostConstruct
     public void automaticStartUp() {
-        launch();
+        start();
     }
 
     /**
@@ -57,13 +57,13 @@ public class AisServerState {
      *
      * @return String indicating that AIS-server was started.
      */
-    @Operation(summary = "Start the AIS-server.",
-            description = "Does nothing if server is already running.")
+    @Operation(summary = "Start the AIS-server if it is not running or unpause it if it is paused.",
+            description = "Does nothing if server is already running and not paused.")
     @GET
-    @Path("/launch")
-    @APIResponse(responseCode = "200", description = "Server was started succesfully.")
+    @Path("/start")
+    @APIResponse(responseCode = "200", description = "Server was started (or unpaused) succesfully.")
     @APIResponse(responseCode = "404", description = "Unable to start server server since it is already running.")
-    public Response launch() {
+    public Response start() {
         String feedback;
         if (!serverIsRunning()) {
             this.aisServer = new Server(nth, this.filename);
@@ -75,6 +75,14 @@ public class AisServerState {
             return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
 
         } else {
+            // Server is already running
+
+            if (aisServer.isPaused()) {
+                aisServer.unpause();
+                feedback = "AIS-server has been unpaused..";
+                return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
+            }
+
             feedback = "Unable to launch server server since it is already running.";
             return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
         }
@@ -124,31 +132,6 @@ public class AisServerState {
 
         aisServer.pause();
         feedback = "AIS-server has been suspended";
-        return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
-    }
-
-    @Operation(summary = "Unpause the AIS-server.",
-            description = "Does nothing if server is not paused or is shut down.")
-    @GET
-    @Path("/unpause")
-    @APIResponse(responseCode = "200", description = "Server was paused successfully.")
-    @APIResponse(responseCode = "404", description = "Unable to pause server since it is not paused.")
-    @APIResponse(responseCode = "404", description = "Unable to pause server since it is already shut down.")
-    public Response unsuspend() {
-        String feedback;
-
-        if (!aisServer.isPaused()) {
-            feedback = "Unable to unpause server since it is not paused.";
-            return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
-        }
-
-        if (!serverIsRunning()) {
-            feedback = "Unable to unpause server since it is shut down.";
-            return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
-        }
-
-        aisServer.unpause();
-        feedback = "AIS-server has been unsuspended";
         return Response.ok().entity(feedback).type(MediaType.TEXT_PLAIN).build();
     }
 
