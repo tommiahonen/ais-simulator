@@ -1,5 +1,7 @@
 package se.havochvatten.unionvms;
 
+import se.havochvatten.unionvms.rest.AisServerState;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server implements Runnable {
+
 
     private boolean interruptRunningProcess;
     private boolean suspendRunningProcess;
@@ -19,7 +22,7 @@ public class Server implements Runnable {
     public Server(int nthPos, String filename) {
         this();
         setNthPos(nthPos);
-        this.filename = filename;
+        setFilename(filename);
     }
 
     public Server() {
@@ -68,7 +71,7 @@ public class Server implements Runnable {
     public void setFilename(String filename) {
         this.filename = filename;
         for (Worker worker : workers) {
-            worker.setFilename(filename);
+            worker.setFilename(this.filename);
         }
     }
 

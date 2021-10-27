@@ -33,6 +33,7 @@ import javax.ws.rs.core.Response;
 @Path("/state")
 public class AisServerState {
 
+    public final static String UPLOAD_DIRECTORY = "/tmp/uvms/"; // This directory also has to be set in web.xml file
     private Server aisServer;
     private Thread aisServerThread;
     private String filename;
@@ -40,7 +41,7 @@ public class AisServerState {
 
     public AisServerState() {
         // First time server is started, if nothing is changed before that, it will use these values.
-        filename = "aisdk_20190513.csv";
+        filename = UPLOAD_DIRECTORY + "aisdk_20190513.csv";
         nth = 3;
     }
 
@@ -160,8 +161,8 @@ public class AisServerState {
         }
     }
 
-    @Operation(summary = "Select datafile that AIS-server reads from.",
-            description = "The selected file must already be located on the server.")
+    @Operation(summary = "Select datafile that AIS-server reads from. Filename should not contain name of directories: only the filename.",
+            description = "The selected file must already be located on the server in the folder /tmp/uvms/.")
     @GET
     @Path("/setFilename/{filename}")
     @Consumes({MediaType.TEXT_PLAIN})
@@ -170,16 +171,17 @@ public class AisServerState {
     @APIResponse(responseCode = "404", description = "File not found")
     public Response setFilename(@Parameter(description = "Name of the CSV datafile.", required = true)
                                 @PathParam("filename") String filename) {
+        String fileFullPath = UPLOAD_DIRECTORY + filename;
 
+        File f = new File(fileFullPath);
 
-        File f = new File(filename);
         if (f.exists() && f.isFile()) {
-            this.filename = filename;
-            this.aisServer.setFilename(filename);
-            return Response.ok().entity("New filename is '" + this.filename + "'.").type(MediaType.TEXT_PLAIN).build();
+            this.filename = fileFullPath;
+            this.aisServer.setFilename(fileFullPath);
+            return Response.ok().entity("New filename is '" + fileFullPath + "'.").type(MediaType.TEXT_PLAIN).build();
         } else {
             this.filename = "";
-            return Response.status(404).entity("Error: no such file found.").type(MediaType.TEXT_PLAIN).build();
+            return Response.status(404).entity("Error: no such file found: " + fileFullPath).type(MediaType.TEXT_PLAIN).build();
         }
     }
 
