@@ -3,6 +3,7 @@ package se.havochvatten.unionvms.rest;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -18,6 +19,8 @@ import java.nio.charset.StandardCharsets;
 
 @Path("/files")
 public class FileUpload {
+
+    @Inject AisServerState aisServerState;
 
     @POST
     @Path("/upload")
@@ -37,6 +40,7 @@ public class FileUpload {
             file.write(filename);
 
             System.out.println("File " + filename + "was uploaded succesfully.");
+            aisServerState.setFilename(filename);
 
             return Response.ok().entity("File " + filename + " was uploaded successfully.").build();
         }
