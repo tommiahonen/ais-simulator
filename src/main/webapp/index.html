@@ -7,19 +7,19 @@
 </head>
 <body>
 
-<h2>AIS-simulator</h2>
+<h2>AIS-simulator admin console</h2>
 
 <hr>
 <div>
     <label>Change simulator state:</label>
     <button><a href="rest/state/start">Start</a></button>
     <button><a href="rest/state/pause">Pause</a></button>
-    <button><a href="rest/state/status">Status</a></button>
+    <button><a href="rest/state/shutdown">Stop</a></button>
 </div>
 <hr>
 <div>
-    <label>Connect as client:</label>
-    <button><a href="http://localhost:8040">Connect</a></button>
+    <label>Show server state:</label>
+    <button><a href="rest/state/status">Status</a></button>
 </div>
 
 <hr/>
@@ -49,6 +49,12 @@
        id="setfilename"
        name="datafilename">
 <input type="button" value="Update">
+
+<hr/>
+<div>
+    <label>Connect as client:</label>
+    <button><a href="http://localhost:8040">Connect</a></button>
+</div>
 <hr/>
 
 </body>
