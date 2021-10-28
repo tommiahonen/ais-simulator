@@ -1,5 +1,7 @@
 body {
     background-color: lightskyblue;
+    font-family: monospace;
+    font-size: larger;
 }
 
 h2 {
