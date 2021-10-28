@@ -6,6 +6,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<script>
+
+    function serverFetch(url, htmlId) {
+        fetch(url)
+            .then(function (response) {
+                return response.text();
+            }).then(function (myText) {
+                document.getElementById(htmlId).innerHTML = myText
+                console.log("Servern svarade=" + myText)
+            }
+        )
+    }
+</script>
+
 
 <h2>AIS-simulator admin console</h2>
 
@@ -14,9 +28,10 @@
     <div class="col1">
         <label>Change simulator state:</label>
     </div>
-    <button><a href="rest/state/start">Start</a></button>
-    <button><a href="rest/state/shutdown">Stop</a></button>
-    <button><a href="rest/state/pause">Pause</a></button>
+    <button><a onClick="serverFetch('rest/state/start', 'stateMessage')">Start</a></button>
+    <button><a onClick="serverFetch('rest/state/shutdown', 'stateMessage')">Stop</a></button>
+    <button><a onClick="serverFetch('rest/state/pause', 'stateMessage')">Pause</a></button>
+    <div id="stateMessage"></div>
 </div>
 <hr>
 <div>
@@ -24,7 +39,8 @@
         <label>Show server state:</label>
     </div>
 
-    <button><a href="rest/state/status">Status</a></button>
+    <button><a onClick="serverFetch('rest/state/status', 'runningMessage')">Status</a></button>
+    <div id="runningMessage"></div>
 </div>
 
 <hr/>
