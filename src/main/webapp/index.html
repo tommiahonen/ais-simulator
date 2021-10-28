@@ -14,7 +14,9 @@
                 return response.text();
             }).then(function (myText) {
                 document.getElementById(elementIdMessage).innerHTML = myText
-            document.getElementById(elementIdClear).innerHTML = '';
+                if (document.getElementById(elementIdClear)) {
+                    document.getElementById(elementIdClear).innerHTML = '';
+                }
                 console.log("Servern svarade=" + elementIdMessage)
             }
         )
@@ -25,8 +27,13 @@
         serverFetch('/rest/state/setnth/' + nthValue, 'nthMessage', '')
     }
 
-</script>
+    function setFilename() {
+        let filename = document.getElementById("setfilename").value
+        console.log("filename=" + filename)
+        serverFetch('/rest/state/setFilename/' + filename, 'filenameMessage', '')
+    }
 
+</script>
 
 <h2>AIS-simulator admin console</h2>
 
@@ -52,14 +59,14 @@
 
 <hr/>
 <div>
-        <div class="col1">
-            <label>Choose Nth position:</label>
-        </div>
+    <div class="col1">
+        <label>Choose Nth position:</label>
+    </div>
 
-        <input id="nthfield" class="rest" type=number value="3" size="4" style="width: 30px;">
-        <input type="submit" value="Update" onClick="setNth()">
+    <input id="nthfield" class="rest" type=number value="3" size="4" style="width: 30px;">
+    <input type="submit" value="Update" onClick="setNth()">
 
-        <div id="nthMessage"></div>
+    <div id="nthMessage"></div>
 </div>
 
 <hr/>
@@ -84,7 +91,8 @@
 <input type="text"
        id="setfilename"
        name="datafilename">
-<input type="button" value="Update">
+<input type="button" value="Update" onClick="setFilename()">
+<div id="filenameMessage"></div>
 
 <hr/>
 <div>
