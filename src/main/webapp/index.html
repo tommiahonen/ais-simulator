@@ -51,7 +51,7 @@
             <label>Choose Nth position:</label>
         </div>
         <input class="rest" type=number value="3" size="4" style="width: 30px;">
-        <input type="submit" value="Update">
+        <input type="submit" value="Update" onclick="getVal()">
     </form>
 </div>
 
@@ -90,3 +90,15 @@
 
 </body>
 </html>
+
+<script>
+    let val;
+
+    function getVal() {
+        val = document.querySelector('input').value;
+        console.log(val);
+        return val;
+    }
+
+    console.log(val);
+</script>
