@@ -19,6 +19,12 @@
             }
         )
     }
+
+    function setNth() {
+        let nthValue = document.getElementById("nthfield").value
+        serverFetch('/rest/state/setnth/' + nthValue, 'nthMessage', '')
+    }
+
 </script>
 
 
@@ -29,9 +35,9 @@
     <div class="col1">
         <label>Change simulator state:</label>
     </div>
-    <button><a onClick="serverFetch('rest/state/start', 'stateMessage', 'runningMessage')">Start</a></button>
-    <button><a onClick="serverFetch('rest/state/shutdown', 'stateMessage', 'runningMessage')">Stop</a></button>
-    <button><a onClick="serverFetch('rest/state/pause', 'stateMessage', 'runningMessage')">Pause</a></button>
+    <button onClick="serverFetch('rest/state/start', 'stateMessage', 'runningMessage')">Start</button>
+    <button onClick="serverFetch('rest/state/shutdown', 'stateMessage', 'runningMessage')">Stop</button>
+    <button onClick="serverFetch('rest/state/pause', 'stateMessage', 'runningMessage')">Pause</button>
     <div id="stateMessage"></div>
 </div>
 <hr>
@@ -40,20 +46,20 @@
         <label>Show server state:</label>
     </div>
 
-    <button><a onClick="serverFetch('rest/state/status', 'runningMessage')">Status</a></button>
+    <button onClick="serverFetch('rest/state/status', 'runningMessage', '')">Status</button>
     <div id="runningMessage"></div>
 </div>
 
 <hr/>
 <div>
-
-    <form method="get" action="/rest/state/setnth/">
         <div class="col1">
             <label>Choose Nth position:</label>
         </div>
-        <input class="rest" type=number value="3" size="4" style="width: 30px;">
-        <input type="submit" value="Update" onclick="getVal()">
-    </form>
+
+        <input id="nthfield" class="rest" type=number value="3" size="4" style="width: 30px;">
+        <input type="submit" value="Update" onClick="setNth()">
+
+        <div id="nthMessage"></div>
 </div>
 
 <hr/>
