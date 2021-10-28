@@ -13,3 +13,11 @@ button {
 input.rest[type=number]::-webkit-inner-spin-button {
     opacity: 1
 }
+
+div {
+    display: inline-block;
+}
+
+.col1 {
+    width: 18em;
+}
