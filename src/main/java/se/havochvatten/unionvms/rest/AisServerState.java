@@ -216,21 +216,6 @@ public class AisServerState {
 
     }
 
-
-    // TODO
-    // CREATE METHOD TO UPLOAD A CSV FILE TYO SERVER
-    // UPLOAD FOLDER SET IN FIELD
-
-    @POST
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @APIResponse(responseCode = "200", description = "The Nth value has been set.")
-    @APIResponse(responseCode = "404", description = "User has provided an illegal value (not >=1).")
-    @Path("/upload")
-    public Response uploadFile() {
-        String UPLOAD_FOLDER;
-        return Response.ok().entity("TODO " + nth).type(MediaType.TEXT_PLAIN).build();
-
-    }
 }
 
 

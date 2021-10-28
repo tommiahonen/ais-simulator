@@ -57,7 +57,7 @@
 								<phase>initialize</phase>
 								<configuration>
 									<target>
-										<mkdir dir="/tmp/uvms" />
+										<mkdir dir="/tmp/uvms/" />
 									</target>
 								</configuration>
 								<goals>
