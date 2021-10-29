@@ -7,7 +7,7 @@ body {
     font-size: larger;
 }
 
-h2 {
+h2, #stateMessage, #runningMessage, #filenameMessage, #nthMessage {
     color: white;
 }
 
@@ -36,4 +36,8 @@ div {
 
 .col1 {
     width: 18em;
+}
+
+#stateMessage, #runningMessage, #filenameMessage, #nthMessage {
+    font-size: xx-small;
 }
