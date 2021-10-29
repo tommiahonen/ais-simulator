@@ -187,7 +187,7 @@ public class AisServerState {
         if (f.exists() && f.isFile()) {
             this.filename = fileFullPath;
             this.aisServer.setFilename(fileFullPath);
-            return Response.ok().entity("New filename is '" + fileFullPath + "'.").type(MediaType.TEXT_PLAIN).build();
+            return Response.ok().entity("You have selected '" + fileFullPath + "'.").type(MediaType.TEXT_PLAIN).build();
         } else {
             this.filename = "";
             return Response.status(404).entity("Error: no such file found: " + fileFullPath).type(MediaType.TEXT_PLAIN).build();
