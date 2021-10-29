@@ -50,7 +50,7 @@ public class FileManager {
     }
 
     @GET
-    @Path("/listfiles")
+    @Path("/list")
     @Operation(summary = "List all CSV datafiles that are available in the AIS-simulator.",
             description = "These files have been uploaded to the AIS-simulator at an eariler time. ")
     @Produces({MediaType.APPLICATION_JSON})
@@ -71,6 +71,6 @@ public class FileManager {
             return Response.status(404).entity("Error: unable to return filelist.").build();
         }
         System.out.println("Here's JSON:\n" + json);
-        return Response.ok().entity(json).build();
+        return Response.ok().entity(json.toString(3)).build();
     }
 }
