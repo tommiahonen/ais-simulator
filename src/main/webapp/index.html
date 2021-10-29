@@ -101,6 +101,7 @@
                name="newdatafile"
                accept=".csv">
             <input id="upload" type="submit" value="Upload file">
+            <label for="fileupload" id="nofile">No file chosen</label>
     </form>
 </div>
 
@@ -108,9 +109,14 @@
 <div class="col1">
     <label for="setfilename">Set filename of uploaded .CSV datafile to read from: </label>
 </div>
-<input type="text"
-       id="setfilename"
-       name="datafilename">
+<div class="dropdown" id="setfilename">
+    <button class="dropbtn">Choose file</button>
+    <div class="dropdown-content">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+    </div>
+</div>
 <input id="update" type="button" value="Update" onClick="setFilename()">
 <div id="filenameMessage"></div>
 
@@ -140,13 +146,5 @@
 </html>
 
 <script>
-    let val;
 
-    function getVal() {
-        val = document.querySelector('input').value;
-        console.log(val);
-        return val;
-    }
-
-    console.log(val);
 </script>
