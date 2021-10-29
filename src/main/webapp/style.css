@@ -15,6 +15,11 @@ label {
     color: white;
 }
 
+#filelist {
+    color: white;
+}
+
+
 button, #nthsubmit, #upload, #update{
     border-radius: 2px;
     background-color: white;
@@ -31,6 +36,7 @@ input.rest[type=number]::-webkit-inner-spin-button {
 }
 
 div {
+    vertical-align: text-top;
     display: inline-block;
 }
 
