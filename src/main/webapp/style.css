@@ -49,10 +49,6 @@ div {
 }
 
 
-#fileupload {
-    display:none;
-}
-
 #nofile {
     color: darkorange;
 }
