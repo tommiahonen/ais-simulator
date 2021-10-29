@@ -20,7 +20,7 @@ function setNth() {
 }
 
 function setFilename() {
-    let filename = document.getElementById("setfilename").value
+    let filename = document.getElementById("setfiledropdown").value
     console.log("filename=" + filename)
     serverFetch('/rest/state/setFilename/' + filename, 'filenameMessage', '')
 }
@@ -57,4 +57,30 @@ async function uploadFile() {
     }).then(function (responseText) {
         document.getElementById("uploadMessage").innerHTML = responseText;
     })
+}
+
+function updateFilelistDropdownMenu(json) {
+
+    let dropdownElement = document.getElementById("setfiledropdown");
+
+    // Delete all existing options from dropdown menu.
+    while (dropdownElement.firstChild) {
+        dropdownElement.removeChild(dropdownElement.lastChild);
+    }
+
+    let newOptionElement = document.createElement("OPTION")
+    dropdownElement.append(newOptionElement)
+    newOptionElement.text="Please choose a file."
+    newOptionElement.disabled=true;
+
+    // Create new option elements and add them to dropdown menu.
+    for (let i = 0; i < json.length; i++) {
+        console.log("file=" + json[i])
+        let newOptionElement = document.createElement("OPTION")
+        dropdownElement.append(newOptionElement)
+        newOptionElement.value = json[i];
+        newOptionElement.text = json[i]
+
+    }
+
 }
