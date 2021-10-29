@@ -39,5 +39,5 @@ div {
 }
 
 #stateMessage, #runningMessage, #filenameMessage, #nthMessage {
-    font-size: xx-small;
+    font-size: small;
 }
