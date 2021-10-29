@@ -2,15 +2,13 @@ package se.havochvatten.unionvms.rest;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.json.JSONObject;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,7 +16,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 @Path("/files")
-public class FileUpload {
+public class FileManager {
 
     @Inject AisServerState aisServerState;
 
@@ -49,5 +47,30 @@ public class FileUpload {
             ex.printStackTrace();
             return Response.status(404).entity("Error while saving file " + ex.getMessage() + " to filesystem on host. Does directory exist and are you able to write to it?").build();
         }
+    }
+
+    @GET
+    @Path("/listfiles")
+    @Operation(summary = "List all CSV datafiles that are available in the AIS-simulator.",
+            description = "These files have been uploaded to the AIS-simulator at an eariler time. ")
+    @Produces({MediaType.APPLICATION_JSON})
+    @APIResponse(responseCode = "200", description = "A list of files was successfully returned.")
+    @APIResponse(responseCode = "404", description = "Error: files could not be listed because of some unforseen error.")
+    public Response listCsvFilesOnServer() {
+        JSONObject json = new JSONObject();
+        try {
+            File f = new File(AisServerState.UPLOAD_DIRECTORY);
+            String[] filepaths = f.list();
+            int i=0;
+            for (String filepath : filepaths) {
+                json.put(Integer.toString(i++), filepath);
+                System.out.println(filepath);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(404).entity("Error: unable to return filelist.").build();
+        }
+        System.out.println("Here's JSON:\n" + json);
+        return Response.ok().entity(json).build();
     }
 }
