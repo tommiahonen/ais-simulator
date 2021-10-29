@@ -41,3 +41,11 @@ div {
 #stateMessage, #runningMessage, #filenameMessage, #nthMessage {
     font-size: small;
 }
+
+#fileupload {
+    display:none;
+}
+
+#nofile {
+    color: darkorange;
+}
