@@ -2,6 +2,7 @@ package se.havochvatten.unionvms.rest;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
@@ -57,20 +58,18 @@ public class FileManager {
     @APIResponse(responseCode = "200", description = "A list of files was successfully returned.")
     @APIResponse(responseCode = "404", description = "Error: files could not be listed because of some unforseen error.")
     public Response listCsvFilesOnServer() {
-        JSONObject json = new JSONObject();
+        JSONArray json = new JSONArray();
         try {
             File f = new File(AisServerState.UPLOAD_DIRECTORY);
             String[] filepaths = f.list();
             int i=0;
             for (String filepath : filepaths) {
-                json.put(Integer.toString(i++), filepath);
-                System.out.println(filepath);
+                json.put(filepath);
             }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(404).entity("Error: unable to return filelist.").build();
         }
-        System.out.println("Here's JSON:\n" + json);
         return Response.ok().entity(json.toString(3)).build();
     }
 }

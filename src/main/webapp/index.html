@@ -8,6 +8,8 @@
 <body>
 <script>
 
+    window.onload = refreshFilelist()
+
     function serverFetch(url, elementIdMessage, elementIdClear) {
         fetch(url)
             .then(function (response) {
@@ -31,6 +33,24 @@
         let filename = document.getElementById("setfilename").value
         console.log("filename=" + filename)
         serverFetch('/rest/state/setFilename/' + filename, 'filenameMessage', '')
+    }
+
+    function refreshFilelist() {
+        fetch("/rest/files/list")
+            .then(function (response) {
+                return response.json();
+            }).then(function (json) {
+
+            let filelistHtml = "";
+            for(let i=0; i<json.length; i++) {
+                filelistHtml += json[i];
+                if (i < json.length-1) {
+                    filelistHtml += "<br>";
+                }
+            }
+
+            document.getElementById("filelist").innerHTML = filelistHtml
+        })
     }
 
 </script>
@@ -93,6 +113,19 @@
        name="datafilename">
 <input id="update" type="button" value="Update" onClick="setFilename()">
 <div id="filenameMessage"></div>
+
+<hr/>
+
+<div>
+    <div class="col1">
+        <label for="setfilename">Files that have already been uploaded to server: </label>
+    </div>
+    <div>
+        <div class="filelist" id="filelist"></div><br>
+        <input id="updateFiles" type="button" value="Refresh" onClick="refreshFilelist()">
+        <div id="filelistMessage"></div>
+    </div>
+</div>
 
 <hr/>
 <div>
