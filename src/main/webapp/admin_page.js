@@ -30,16 +30,6 @@ function refreshFilelist() {
         .then(function (response) {
             return response.json();
         }).then(function (json) {
-
-        let filelistHtml = "";
-        for (let i = 0; i < json.length; i++) {
-            filelistHtml += json[i];
-            if (i < json.length - 1) {
-                filelistHtml += "<br>";
-            }
-        }
-
-        document.getElementById("filelist").innerHTML = filelistHtml
         updateFilelistDropdownMenu(json)
     })
 }

@@ -42,10 +42,21 @@
     <div id="nthMessage"></div>
 </div>
 
+
+
+<hr/>
+<div class="col1">
+    <label for="setfiledropdown">Select .CSV datafile to read from: </label>
+</div>
+<select id="setfiledropdown"></select>
+<input id="update" type="button" value="Update" onClick="setFilename()">
+<div id="filenameMessage"></div>
+
+
 <hr/>
 <div>
     <div class="col1">
-        <label for="fileupload">Upload new CSV file to server: </label>
+        <label for="fileupload">Upload new .CSV datafile: </label>
     </div>
     <input type="file" id="fileupload" accept=".csv">
     <button onClick="uploadFile()">Upload file</button>
@@ -53,29 +64,7 @@
 </div>
 
 <hr/>
-<div class="col1">
-    <label for="setfiledropdown">Set filename of uploaded .CSV datafile to read from: </label>
-</div>
-<select id="setfiledropdown"></select>
-<input id="update" type="button" value="Update" onClick="setFilename()">
-<div id="filenameMessage"></div>
 
-<hr/>
-
-<div>
-    <div class="col1">
-        <label for="setfilename">Files that have already been uploaded to server: </label>
-    </div>
-    <div>
-        <div class="filelist" id="filelist"></div>
-        <div>
-            <input id="updateFiles" type="button" value="Reload list" onClick="refreshFilelist()">
-            <div id="filelistMessage"></div>
-        </div>
-    </div>
-</div>
-
-<hr/>
 <div>
     <div class="col1">
         <label>Connect as client:</label>
