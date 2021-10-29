@@ -64,7 +64,7 @@
     </div>
 
     <input id="nthfield" class="rest" type=number value="3" size="4" style="width: 30px;">
-    <input type="submit" value="Update" onClick="setNth()">
+    <input type="submit" value="Update" onClick="setNth()" id="nthsubmit">
 
     <div id="nthMessage"></div>
 </div>
@@ -80,9 +80,7 @@
                id="fileupload"
                name="newdatafile"
                accept=".csv">
-        <div class="submit">
-            <input type="submit" value="Upload file">
-        </div>
+            <input id="upload" type="submit" value="Upload file">
     </form>
 </div>
 
@@ -93,7 +91,7 @@
 <input type="text"
        id="setfilename"
        name="datafilename">
-<input type="button" value="Update" onClick="setFilename()">
+<input id="update" type="button" value="Update" onClick="setFilename()">
 <div id="filenameMessage"></div>
 
 <hr/>
