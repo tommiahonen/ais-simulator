@@ -119,14 +119,9 @@
 <div class="col1">
     <label for="setfilename">Set filename of uploaded .CSV datafile to read from: </label>
 </div>
-<div class="dropdown" id="setfilename">
-    <button class="dropbtn">Choose file</button>
-    <div class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-    </div>
-</div>
+<input type="text"
+       id="setfilename"
+       name="datafilename">
 <input id="update" type="button" value="Update" onClick="setFilename()">
 <div id="filenameMessage"></div>
 
