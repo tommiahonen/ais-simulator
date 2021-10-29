@@ -1,11 +1,17 @@
 body {
-    background-color: lightskyblue;
+    max-width: 500px;
+    margin: auto;
+    background-color: rgb(2,45,65);
     font-family: monospace;
     font-size: larger;
 }
 
 h2 {
-    color: darkslategrey;
+    color: white;
+}
+
+label {
+    color: white;
 }
 
 button {
@@ -23,3 +29,6 @@ div {
 .col1 {
     width: 18em;
 }
+
+
+
