@@ -26,4 +26,18 @@ CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.
 
 Once the AIS-simulator is up and running clients can connect to it using port 8040 e.g. http://localhost:8040/.
 
-The admin page for the AIS-simulator server uses a REST interface to communicate with/configure the AIS-simulator server itself. The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi. There is also a Swagger UI available for the same REST interface at http://localhost:8080/rest/openapi-ui/.
+The admin page for the AIS-simulator server uses a REST interface to communicate with/configure the AIS-simulator server itself. The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
+
+# Unresolved issues
+
+This application currently only works in Linux (and Mac?).
+
+On Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a directory path that works in Windows e.g. `C:\temp\uvms`. That change will have to be made in the following files:
+
+* /pom.xml
+* /src/main/webapp/WEB-INF/web.xml
+* /src/main/java/se/havochvatten/unionvms/rest/AisServerState.java
+
+# Extra
+
+There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
