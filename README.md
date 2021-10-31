@@ -6,12 +6,14 @@ Build with mvn clean install, this creates a fat jar with embedded Payara Micro 
 
 Run with java -jar target/ais-simulator-microbundle.jar.
 
-After that open http://localhost:8080/ in your web browser. This will display the "AIS-simulator admin page" where you can do the following:
+After that open http://localhost:8080/ in your web browser. This will display the "AIS-simulator admin page" (see screenshot below) where you can do the following:
 
 * select which .csv datafile AIS-simulator should use when it is running
 * upload new .csv datafiles to the simulator
 * start, stop and pause the AIS-simulator
 * select which nth value the simulator should use when it is running
+
+![image.png](./assets/image.png)
 
 Please note: You can only start up the AIS-simulator from the admin page after you have first done the following:
 
