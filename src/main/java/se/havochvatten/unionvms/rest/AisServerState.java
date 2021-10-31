@@ -39,11 +39,10 @@ public class AisServerState {
     private Thread aisServerThread;
     private String filename;
     private int nth;
-    private static final String UPLOAD_FOLDER = "ftp://ftp.ais.dk/ais_data/";
 
     public AisServerState() {
         // First time server is started, if nothing is changed before that, it will use these values.
-        filename = UPLOAD_DIRECTORY + "aisdk_20190513.csv";
+        // filename = UPLOAD_DIRECTORY + "aisdk_20190513.csv";
         nth = 3;
     }
 
@@ -52,7 +51,7 @@ public class AisServerState {
      */
     @PostConstruct
     public void automaticStartUp() {
-        start();
+        //start();
     }
 
     /**
@@ -66,8 +65,15 @@ public class AisServerState {
     @Path("/start")
     @APIResponse(responseCode = "200", description = "Server was started (or unpaused) succesfully.")
     @APIResponse(responseCode = "404", description = "Unable to start server server since it is already running.")
+    @APIResponse(responseCode = "404", description = "Unable to start server server since no .csv datafile has been set.")
     public Response start() {
         String feedback;
+        if (filename==null || filename.equals("")) {
+            feedback = "Unable to launch server since no .csv datafile has been set.";
+            return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
+        }
+
+
         if (!serverIsRunning()) {
             this.aisServer = new Server(nth, this.filename);
             this.aisServerThread = new Thread(aisServer);
@@ -122,13 +128,13 @@ public class AisServerState {
     public Response suspend() {
         String feedback;
 
-        if (aisServer.isPaused()) {
-            feedback = "Unable to pause server since it is already paused.";
+        if (aisServer == null || !serverIsRunning()) {
+            feedback = "Unable to pause server since it is shut down.";
             return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
         }
 
-        if (!serverIsRunning()) {
-            feedback = "Unable to pause server since it is shut down.";
+        if (aisServer.isPaused()) {
+            feedback = "Unable to pause server since it is already paused.";
             return Response.status(404).entity(feedback).type(MediaType.TEXT_PLAIN).build();
         }
 
@@ -186,7 +192,10 @@ public class AisServerState {
 
         if (f.exists() && f.isFile()) {
             this.filename = fileFullPath;
-            this.aisServer.setFilename(fileFullPath);
+            // If AIS-server has already been started then change filename for already existing instance of AIS-server
+            if (this.aisServer != null) {
+                this.aisServer.setFilename(fileFullPath);
+            }
             return Response.ok().entity("You have selected '" + fileFullPath + "'.").type(MediaType.TEXT_PLAIN).build();
         } else {
             this.filename = "";
@@ -210,7 +219,9 @@ public class AisServerState {
 
         // Change nth value of Server and it's Workers
         this.nth = nth;
-        aisServer.setNthPos(this.nth);
+        if (aisServer != null) {
+            aisServer.setNthPos(this.nth);
+        }
 
         return Response.ok().entity("Nth value is now set to " + nth).type(MediaType.TEXT_PLAIN).build();
 
