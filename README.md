@@ -22,7 +22,7 @@ Please note: You can only start up the AIS-simulator from the admin page after y
 
 Both of these things you can do from the AIS-simulator admin page at http://localhost:8080/.
 
-CSV datafiles can be downloaded using from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g. the [FileZilla client](https://filezilla-project.org/).
+CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g. the [FileZilla client](https://filezilla-project.org/).
 
 Once the AIS-simulator is up and running clients can connect to it using port 8040 e.g. http://localhost:8040/.
 
