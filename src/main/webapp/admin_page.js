@@ -46,6 +46,7 @@ async function uploadFile() {
         return response.text();
     }).then(function (responseText) {
         document.getElementById("uploadMessage").innerHTML = responseText;
+        refreshFilelist()
     })
 }
 
@@ -59,9 +60,24 @@ function updateFilelistDropdownMenu(json) {
     }
 
     let newOptionElement = document.createElement("OPTION")
+    // Create the first drop-down menu option
     dropdownElement.append(newOptionElement)
-    newOptionElement.text="Please choose a file."
-    newOptionElement.disabled=true;
+    newOptionElement.text = "Please choose a file."
+    newOptionElement.disabled = true
+
+    // disable upload file selection if no files have been uploaded yet
+    if (json.length==0) {
+
+        document.getElementById("setfiledropdown").disabled=true
+        document.getElementById("update").disabled=true
+        newOptionElement.text = "Please upload a file first."
+
+    } else {
+        document.getElementById("setfiledropdown").disabled=false
+        document.getElementById("update").disabled=false
+    }
+
+
 
     // Create new option elements and add them to dropdown menu.
     for (let i = 0; i < json.length; i++) {
@@ -70,7 +86,6 @@ function updateFilelistDropdownMenu(json) {
         dropdownElement.append(newOptionElement)
         newOptionElement.value = json[i];
         newOptionElement.text = json[i]
-
     }
 
 }
