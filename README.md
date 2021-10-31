@@ -4,9 +4,9 @@ A simple AIS server simulator.
 
 Build with mvn clean install, this creates a fat jar with embedded Payara Micro Enterprise server.
 
-Run with java -jar target/ais-simulator-microbundle.jar.
+Run with `java -jar target/ais-simulator-microbundle.jar`.
 
-After that open http://localhost:8080/ in your web browser. This will display the "AIS-simulator admin page" (see screenshot below) where you can do the following:
+After that open http://localhost:8080/ in your web browser. This will display the "*AIS-simulator admin page*" (see screenshot below) where you can do the following:
 
 * select which .csv datafile AIS-simulator should use when it is running
 * upload new .csv datafiles to the simulator
