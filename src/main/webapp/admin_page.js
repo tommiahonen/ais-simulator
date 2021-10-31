@@ -1,4 +1,10 @@
-window.onload = refreshFilelist()
+window.onload = onPageLoad()
+
+
+function onPageLoad() {
+    refreshFilelist()
+    document.getElementById("connectAddress").innerHTML = window.location.host + ":8040"
+}
 
 function serverFetch(url, elementIdMessage, elementIdClear) {
     fetch(url)
