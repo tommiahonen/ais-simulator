@@ -2,9 +2,13 @@
 
 A simple AIS server simulator.
 
+# How to build & run
+
 Build with `mvn clean install`, this creates a fat jar with embedded Payara Micro Enterprise server.
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
+
+# How to use
 
 After that open http://localhost:8080/ in your web browser. This will display the "*AIS-simulator admin page*" (see screenshot below) where you can do the following:
 
@@ -15,6 +19,8 @@ After that open http://localhost:8080/ in your web browser. This will display th
 
 ![image.png](./assets/image.png)
 
+# Before you press "Start"
+
 Please note: You can only start up the AIS-simulator from the admin page after you have first done the following:
 
 1. uploaded at least one .csv datafile to the AIS-simulator server
@@ -22,11 +28,19 @@ Please note: You can only start up the AIS-simulator from the admin page after y
 
 Both of these things you can do from the AIS-simulator admin page at http://localhost:8080/.
 
-CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g. the [FileZilla client](https://filezilla-project.org/).
+# Connecting to simulator
 
 Once the AIS-simulator is up and running clients can connect to it using port 8040 e.g. http://localhost:8040/.
 
+# REST Interface
+
 The admin page for the AIS-simulator server uses a REST interface to communicate with/configure the AIS-simulator server itself. The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
+
+There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
+
+# Where to get .csv datafiles for the simulator
+
+CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g. the [FileZilla client](https://filezilla-project.org/).
 
 # Unresolved issues
 
@@ -37,7 +51,3 @@ On Windows you will have to change the path of the temporary download directory 
 * /pom.xml
 * /src/main/webapp/WEB-INF/web.xml
 * /src/main/java/se/havochvatten/unionvms/rest/AisServerState.java
-
-# Extra
-
-There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
