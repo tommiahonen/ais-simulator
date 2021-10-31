@@ -8,7 +8,7 @@ Build with `mvn clean install`, this creates a fat jar with embedded Payara Micr
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
 
-# How to use
+# How to access admin page
 
 After that open http://localhost:8080/ in your web browser. This will display the "*AIS-simulator admin page*" (see screenshot below) where you can do the following:
 
@@ -28,11 +28,11 @@ Please note: You can only start up the AIS-simulator from the admin page after y
 
 Both of these things you can do from the AIS-simulator admin page at http://localhost:8080/.
 
-# Connecting to simulator
+# Connecting to simulator from client
 
 Once the AIS-simulator is up and running clients can connect to it using port 8040 e.g. http://localhost:8040/.
 
-# REST Interface
+# REST interface
 
 The admin page for the AIS-simulator server uses a REST interface to communicate with/configure the AIS-simulator server itself. The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
 
