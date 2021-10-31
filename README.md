@@ -32,7 +32,7 @@ The admin page for the AIS-simulator server uses a REST interface to communicate
 
 This application currently only works in Linux (and Mac?).
 
-On Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a directory path that works in Windows e.g. `C:\temp\uvms`. That change will have to be made in the following files:
+On Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a path that works in Windows e.g. `C:\temp\uvms`. That change will have to be made in the following three files:
 
 * /pom.xml
 * /src/main/webapp/WEB-INF/web.xml
