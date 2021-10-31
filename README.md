@@ -44,7 +44,7 @@ CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.
 
 # Unresolved issues
 
-This application currently only works in Linux (and Mac?).
+This application currently works only in Linux (and Mac?).
 
 On Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a path that works in Windows e.g. `C:\temp\uvms`. That change will have to be made in the following three files:
 
