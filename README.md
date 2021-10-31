@@ -2,7 +2,7 @@
 
 A simple AIS server simulator.
 
-Build with mvn clean install, this creates a fat jar with embedded Payara Micro Enterprise server.
+Build with `mvn clean install`, this creates a fat jar with embedded Payara Micro Enterprise server.
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
 
