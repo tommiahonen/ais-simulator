@@ -8,7 +8,7 @@ Build with `mvn clean install`, this creates a fat jar with embedded Payara Micr
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
 
-# How to access admin page
+# How to access admin page of simulator
 
 After that open http://localhost:8080/ in your web browser. This will display the "*AIS-simulator admin page*" (see screenshot below) where you can do the following:
 
