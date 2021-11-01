@@ -1,4 +1,9 @@
-window.onload = refreshFilelist()
+document.addEventListener("DOMContentLoaded", onStartup);
+
+function onStartup() {
+    refreshFilelist()
+    onUploadFileChange()
+}
 
 function serverFetch(url, elementIdMessage, elementIdClear) {
     fetch(url)
@@ -25,6 +30,19 @@ function setFilename() {
     serverFetch('/rest/state/setFilename/' + filename, 'filenameMessage', '')
 }
 
+function onUploadFileChange() {
+    let fileuploadSelectorElement = document.getElementById("fileupload")
+    let fileuploadButton = document.getElementById("uploadFileButton")
+
+    if (fileuploadSelectorElement.files[0]) {
+        // // A file has been selected: enable upload button.
+        fileuploadButton.disabled=false;
+    } else {
+        // No file has been selected: disable upload button.
+        fileuploadButton.disabled=true;
+    }
+}
+
 function refreshFilelist() {
     fetch("/rest/files/list")
         .then(function (response) {
@@ -35,7 +53,6 @@ function refreshFilelist() {
 }
 
 async function uploadFile() {
-    console.log("About to upload file...")
     let fileupload = document.getElementById("fileupload")
     if (!fileupload.files[0]) {
         // Upload button clicked even though no file was selected: do nothing.

@@ -56,8 +56,8 @@
     <div class="col1">
         <label for="fileupload">Upload new .CSV datafile: </label>
     </div>
-    <input type="file" id="fileupload" accept=".csv">
-    <button onClick="uploadFile()">Upload file</button>
+    <input type="file" id="fileupload" accept=".csv" onChange="onUploadFileChange()">
+    <button id="uploadFileButton" onClick="uploadFile()">Upload file</button>
     <div id="uploadMessage"></div>
 </div>
 
