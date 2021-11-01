@@ -42,6 +42,12 @@ There is also Swagger UI available for the REST interface at http://localhost:80
 
 CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g. the [FileZilla client](https://filezilla-project.org/).
 
+# Uploaded files are deleted when OS is rebooted?
+
+Uploaded files are currently stored in `/tmp/uvms`. In Linux this folder and all files contained within it are automatically deleted once the OS is rebooted. 
+
+On Windows this doesn't happen and any uploaded files will remain even after the OS is restarted.
+
 # Unresolved issues #1
 
 This application currently works only in Linux (and Mac?).
