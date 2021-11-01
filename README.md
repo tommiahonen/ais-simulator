@@ -63,3 +63,5 @@ On Windows you will have to change the path of the temporary download directory 
 Another issue on Windows is that you may get a `java.net.SocketException: Protocol family not supported` thrown by the JVM if you try to connect (from the client) to url http://localhost:8040/. This issue may be related to running Docker Desktop.
 
 One way to get around this issue seems to be to make the query to http://[your host computer name]:8040/ instead. So you could use e.g. http://desktop-25pafta:8040/ if your host computer was named `desktop-25pafta`.
+
+This issue seems to not be present on Linux.
