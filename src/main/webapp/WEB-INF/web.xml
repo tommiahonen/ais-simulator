@@ -4,7 +4,7 @@
         <servlet-name>se.havochvatten.unionvms.rest.RestApplication</servlet-name>
         <multipart-config>
             <!-- Uploaded files are saved in this folder. Please make sure that this folder exists other wise uploads won't work. -->
-            <location>C:/tmp/uvms/</location>
+            <location>/tmp/uvms/</location>
             <max-file-size>4000000000</max-file-size> <!--in bytes-->
             <max-request-size>4000000000</max-request-size> <!--in bytes-->
             <file-size-threshold>0</file-size-threshold> <!--in bytes-->
