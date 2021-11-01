@@ -37,6 +37,11 @@ function refreshFilelist() {
 async function uploadFile() {
     console.log("About to upload file...")
     let fileupload = document.getElementById("fileupload")
+    if (!fileupload.files[0]) {
+        // Upload button clicked even though no file was selected: do nothing.
+        return
+    }
+
     let formData = new FormData();
     formData.append("newdatafile", fileupload.files[0]);
     fetch('http://localhost:8080/rest/files/upload', {
