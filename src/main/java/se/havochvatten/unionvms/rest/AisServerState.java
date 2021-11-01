@@ -34,7 +34,7 @@ import javax.ws.rs.core.Response;
 @Path("/state")
 public class AisServerState {
 
-    public final static String UPLOAD_DIRECTORY = "/tmp/uvms/"; // This directory also has to be set in web.xml file
+    public final static String UPLOAD_DIRECTORY = "C:/tmp/uvms/"; // This directory also has to be set in web.xml file
     private Server aisServer;
     private Thread aisServerThread;
     private String filename;

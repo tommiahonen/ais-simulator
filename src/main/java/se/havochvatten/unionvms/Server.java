@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Server implements Runnable {
 
-
+    private static final int PORT_NUMBER_IN = 8040;
     private boolean interruptRunningProcess;
     private boolean suspendRunningProcess;
     private ServerSocket serverSocket;
@@ -35,7 +35,7 @@ public class Server implements Runnable {
     public void run() {
 
         try {
-            serverSocket = new ServerSocket(8040);
+            serverSocket = new ServerSocket(PORT_NUMBER_IN);
             while (!interruptRunningProcess) {
                 Socket clientSocket = serverSocket.accept();
                 String ais_nth_pos_str = System.getProperty("ais_nth_pos");
@@ -48,10 +48,18 @@ public class Server implements Runnable {
                 new Thread(worker).start();
             }
         } catch (SocketException e) {
-            System.out.println("Server is stopping. Will now stop workers too...");
-            for (Worker worker : workers) {
-                System.out.println("Attempting to stop a worker...");
-                worker.stop();
+            if (interruptRunningProcess) {
+                // Socket was closed manually because of server shutdown
+                System.out.println("Server is stopping. Will now stop workers too...");
+                for (Worker worker : workers) {
+                    System.out.println("Attempting to stop a worker...");
+                    worker.stop();
+                }
+            } else {
+                // Socket was closed because of some error.
+                System.out.println("Error: unable to open port " + PORT_NUMBER_IN + ".");
+                System.out.println("Server is stopping.");
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,12 +67,12 @@ public class Server implements Runnable {
     }
 
     public void shutdown() {
+        interruptRunningProcess = true;
         try {
             this.serverSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        interruptRunningProcess = true;
         System.out.println("Server.shutdown() called.");
     }
 
