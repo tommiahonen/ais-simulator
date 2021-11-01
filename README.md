@@ -28,25 +28,25 @@ Please note: You can only start up the AIS-simulator from the admin page after y
 
 Both of these things you can do from the AIS-simulator admin page at http://localhost:8080/.
 
-# Connecting to simulator from client
-
-Once the AIS-simulator is up and running clients can connect to it using port 8040 e.g. http://localhost:8040/.
-
-# REST interface
-
-The admin page for the AIS-simulator server uses a REST interface to communicate with/configure the AIS-simulator server itself. The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
-
-There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
-
 # Where to get .csv datafiles for the simulator
 
 CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g. the [FileZilla client](https://filezilla-project.org/).
+
+# Connecting to simulator from client
+
+Once the AIS-simulator is up and running clients can connect to it using port 8040 e.g. http://localhost:8040/.
 
 # Uploaded files are deleted when OS is rebooted?
 
 Uploaded files are currently stored in `/tmp/uvms`. In Linux this folder and all files contained within it are automatically deleted once the OS is rebooted. 
 
 On Windows this doesn't happen and any uploaded files will remain even after the OS is restarted.
+
+# REST interface
+
+The admin page for the AIS-simulator server uses a REST interface to communicate with/configure the AIS-simulator server itself. The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
+
+There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
 
 # Unresolved issues #1
 
