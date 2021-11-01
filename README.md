@@ -42,7 +42,7 @@ There is also Swagger UI available for the REST interface at http://localhost:80
 
 CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g. the [FileZilla client](https://filezilla-project.org/).
 
-# Unresolved issues
+# Unresolved issues #1
 
 This application currently works only in Linux (and Mac?).
 
@@ -51,3 +51,9 @@ On Windows you will have to change the path of the temporary download directory 
 * /pom.xml
 * /src/main/webapp/WEB-INF/web.xml
 * /src/main/java/se/havochvatten/unionvms/rest/AisServerState.java
+
+# Unresolved issues #2
+
+Another issue on Windows is that if you are running also running Docker Desktop and you try to connect from the client to url http://localhost:8040/ then the JVM will throw the following Exception `java.net.SocketException: Protocol family not supported`. 
+
+One way to get around this seems to be to make the query to http://[your host computer name]:8040/ instead e.g. http://desktop-25pafta:8040/
