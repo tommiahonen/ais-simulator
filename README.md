@@ -65,3 +65,9 @@ Another issue on Windows is that you may get a `java.net.SocketException: Protoc
 One way to get around this issue seems to be to make the query to http://[your host computer name]:8040/ instead. So you could use e.g. http://desktop-25pafta:8040/ if your host computer was named `desktop-25pafta`.
 
 This issue seems to not be present on Linux.
+
+# Future development
+
+Create a docker image for this simulator that runs in e.g. Arch linux so that we 
+
+can avoid complications in use of diffrent operating systems, in particular windows.
