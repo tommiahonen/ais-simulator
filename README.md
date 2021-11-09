@@ -1,13 +1,16 @@
 # AIS Server Simulator
 
-A simple AIS server simulator for the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview). 
+A simple AIS server simulator for the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview).
 
-This AIS-server simulator provides simulated [AIS-messages](https://en.wikipedia.org/wiki/Automatic_identification_system) to the UVMS application. 
+This AIS-server simulator provides simulated [AIS-messages](https://en.wikipedia.org/wiki/Automatic_identification_system) to the UVMS application.
 
 The AIS-server simulator has a simple administration page (see screenshot below) from which the simulator can be controlled.
 
 The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is not contained within this repository.
-# High level overview of simulator interactiong with UVMS application
+
+# High-level overview of simulator interacting with UVMS application
+
+This diagram is meant mainly to describe the AIS-server simulator, although it also contains an extremely simplified view of the UVMS application (in the upper right-hand corner of the diagram).
 
 ![image.png](./assets/simulator-structure.png)
 
