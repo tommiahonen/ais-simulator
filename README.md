@@ -1,6 +1,15 @@
-# AIS Simulator
+# AIS Server Simulator
 
-A simple AIS server simulator.
+A simple AIS server simulator for the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview). 
+
+This AIS-server simulator provides simulated [AIS-messages](https://en.wikipedia.org/wiki/Automatic_identification_system) to the UVMS application. 
+
+The AIS-server simulator has a simple administration page (see screenshot below) from which the simulator can be controlled.
+
+The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is not contained within this repository.
+# High level overview of simulator interactiong with UVMS application
+
+![image.png](./assets/simulator-structure.png)
 
 # How to build & run
 
@@ -8,7 +17,7 @@ Build with `mvn clean install`, this creates a fat jar with embedded Payara Micr
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
 
-# How to access admin page
+# How to access administration page
 
 After that open http://localhost:8080/ in your web browser. This will display the "*AIS-simulator admin page*" (see screenshot below) where you can do the following:
 
@@ -17,7 +26,7 @@ After that open http://localhost:8080/ in your web browser. This will display th
 * start, stop and pause the AIS-simulator
 * select which nth value the simulator should use when it is running
 
-![image.png](./assets/image.png)
+![image.png](./assets/simulator-screenshot.png)
 
 # Before you press "Start"
 
@@ -38,7 +47,7 @@ Once the AIS-simulator is up and running clients can connect to it using port 80
 
 # Uploaded files are deleted when OS is rebooted?
 
-Uploaded files are currently stored in `/tmp/uvms`. In Linux this folder and all files contained within it are automatically deleted once the OS is rebooted. 
+Uploaded files are currently stored in `/tmp/uvms`. In Linux this folder and all files contained within it are automatically deleted once the OS is rebooted.
 
 On Windows this doesn't happen and any uploaded files will remain even after the OS is restarted.
 
@@ -68,6 +77,6 @@ This issue seems to not be present on Linux.
 
 # Future development
 
-Create a docker image for this simulator that runs in e.g. Arch linux so that we 
+Create a docker image for this simulator that runs in e.g. Arch linux so that we
 
 can avoid complications in use of diffrent operating systems, in particular windows.
