@@ -10,7 +10,9 @@ The UVMS application is a completely separate project ([GitHub link](https://git
 
 # High-level overview of simulator interacting with UVMS application
 
-This diagram is meant mainly to describe the AIS-server simulator, although it also contains an extremely simplified view of the UVMS application (in the upper right-hand corner of the diagram).
+This diagram is meant mainly to describe the AIS-server simulator, although it also contains an overly simplified model of the UVMS application (in the upper right-hand corner of the diagram). 
+
+The UVMS application is part of the diagram only in order to show the way in which it interacts with the AIS-server simulator when both are running.
 
 ![image.png](./assets/simulator-structure.png)
 
