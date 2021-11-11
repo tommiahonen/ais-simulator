@@ -4,17 +4,17 @@ A simple AIS server simulator for
 the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview).
 
 This AIS-server simulator provides
-simulated [AIS-messages](https://en.wikipedia.org/wiki/Automatic_identification_system) to the UVMS application.
+simulated AIS-messages to the UVMS application.
 
 The AIS-server simulator has a simple administration page (see screenshot below) from which the simulator can be
 controlled.
 
-The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is not contained
+Please note: The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is not contained
 within this repository.
 
 # More background: What is an AIS server and why do we need to simulate its functionality?
 
-But first we need to know what AIS messages are. *Automatic Identification System* (AIS) messages are short, automatic, status messages broadcast wirelessly using marine VHF from automatic transponders on pretty much all major ships, boats and other marine vessels. This is done in order to let other vessels,
+But first we need to know what AIS messages are. *[Automatic Identification System](https://en.wikipedia.org/wiki/Automatic_identification_system)* (AIS) messages are short, automatic, status messages broadcast wirelessly using [marine VHF radio](https://en.wikipedia.org/wiki/Marine_VHF_radio) from automatic [AIS transponders](https://en.wikipedia.org/wiki/Automatic_identification_system#/media/File:Ships_AIS_display_with_lists_of_nearby_vessels.jpg) on pretty much all major ships, boats and other marine vessels. This is done in order to let other vessels,
 satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically
 sent out every 3-180 seconds and have a maximum range of 65 km.
 
