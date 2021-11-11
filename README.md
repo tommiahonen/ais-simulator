@@ -73,7 +73,7 @@ screenshot below) where you can do the following:
 * select which .csv datafile AIS-simulator should use when it is running
 * upload new .csv datafiles to the simulator
 * start, stop and pause the AIS-simulator
-* select which nth value the simulator should use when it is running
+* select which nth value the simulator should use when it is running. E.g. if nth value=3 only every third AIS message will be realyed to the REST interface. If nth value=1 every single message will be relayed to the REST interface.
 
 <div style="text-align: center">
 
