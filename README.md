@@ -14,11 +14,20 @@ within this repository.
 
 # More background: What is the AIS-simulator and what is it used for?
 
-Automatic Identification System (AIS) messages are short automatic status messages broadcast from automatic transponders on ships, boats and other marine vessels using radiowaves (Marine VHF). This is done in order to let other vessels, satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically sent out every 3-180 seconds and have a maximum range of 65 km. 
+Automatic Identification System (AIS) messages are short automatic status messages broadcast from automatic transponders
+on ships, boats and other marine vessels using radiowaves (Marine VHF). This is done in order to let other vessels,
+satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically
+sent out every 3-180 seconds and have a maximum range of 65 km.
 
-An AIS server is a repository for retransitting such AIS messages, in near realtime, typically via a REST interface to applications that are otherwise unable to receive AIS messages (they don't have an antenna or are out of range of the original transmission).
+An AIS server is a repository for retransitting such AIS messages, in near realtime, typically via a REST interface to
+applications that are otherwise unable to receive AIS messages (they don't have an antenna or are out of range of the
+original transmission).
 
-This AIS server simulator is similarily a server that can send out AIS messages using a REST interface to other applications. However instead of sending out real AIS messages that actual boats/vessels have previously sent out, the AIS server simulator instead sends out "fake" AIS messages that it reads from a local file. This is useful especially when testing an application that uses IAS traffic since you can use specific set of predefined IAS-messages e.g. when testing some specific marine traffic scenario.
+This AIS server simulator is similarily a server that can send out AIS messages using a REST interface to other
+applications. However instead of sending out real AIS messages that actual boats/vessels have previously sent out, the
+AIS server simulator instead sends out "fake" AIS messages that it reads from a local file. This is useful especially
+when testing an application that uses IAS traffic since you can use specific set of predefined IAS-messages e.g. when
+testing some specific marine traffic scenario.
 
 # High-level overview of simulator interacting with UVMS application
 
@@ -49,7 +58,6 @@ screenshot below) where you can do the following:
 * upload new .csv datafiles to the simulator
 * start, stop and pause the AIS-simulator
 * select which nth value the simulator should use when it is running
-
 
 <div style="text-align: center">
 
