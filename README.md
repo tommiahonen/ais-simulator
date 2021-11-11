@@ -25,6 +25,15 @@ and landbased stations know their geographic location, course, destination etc. 
 every 3-180 seconds and have a maximum range of 65
 km.
 
+
+<div style="text-align: center">
+
+![image.png](./assets/uvms-screenshot.png)
+
+<b>Screenshot 1</b> - A map with ships that are transmitting AIS messages. Screenshot from UVMS application. </b>
+
+</div>
+
 After a satellite or landbased radio antenna has intercepted an AIS message, the message contents are eventually
 forwarded to an "AIS server". An AIS server is a centralized repository of intercepted/recieved AIS messages. Whenever
 the server receives a new AIS message it immediatelly rentransmits it to its REST interface. And from this REST
@@ -36,14 +45,6 @@ out AIS messages using a REST interface to other applications. However instead o
 actual boats/vessels have previously sent out, the AIS server simulator instead sends out "fake" AIS messages that it
 reads from a local file. This is useful especially when testing an application that uses IAS traffic since you can use
 specific set of predefined IAS-messages e.g. when testing some specific marine traffic scenario.
-
-<div style="text-align: center">
-
-![image.png](./assets/uvms-screenshot.png)
-
-<b>Screenshot 2</b> - A map with ships that are transitting AIS messages. Screenshot from UVMS application. </b>
-
-</div>
 
 # High-level overview of simulator interacting with UVMS application
 
@@ -79,7 +80,7 @@ screenshot below) where you can do the following:
 
 ![image.png](./assets/simulator-screenshot.png)
 
-<b>Screenshot 1</b> - AIS-server simulator administration page.
+<b>Screenshot 2</b> - AIS-server simulator administration page.
 
 </div>
 
