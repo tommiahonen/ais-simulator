@@ -25,7 +25,7 @@ km.
 
 ![image.png](./assets/uvms-screenshot.png)
 
-<b>Screenshot 1</b> - A map with ships whose positions and bearings have been extracted from AIS messages. Screenshot from UVMS application (not the AIS Server Simulator). </b>
+<b>Screenshot 1</b> - A map with ships whose positions and bearings have been extracted from AIS messages. Screenshot from browser based frontend of the UVMS application (i.e. not the AIS Server Simulator). </b>
 
 </div>
 
