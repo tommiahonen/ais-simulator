@@ -14,7 +14,9 @@ within this repository.
 
 # More background: What is an AIS server and why do we need to simulate its functionality?
 
-But first we need to know what AIS messages are. *[Automatic Identification System](https://en.wikipedia.org/wiki/Automatic_identification_system)* (AIS) messages are short, automatic, status messages broadcast wirelessly using [marine VHF radio](https://en.wikipedia.org/wiki/Marine_VHF_radio) from automatic [AIS transponders](https://en.wikipedia.org/wiki/Automatic_identification_system#/media/File:Ships_AIS_display_with_lists_of_nearby_vessels.jpg) on pretty much all major ships, boats and other marine vessels. This is done in order to let other vessels,
+But first, we need to know what AIS messages are. 
+
+*[Automatic Identification System](https://en.wikipedia.org/wiki/Automatic_identification_system)* (AIS) messages are short, automatic, status messages broadcast wirelessly using [marine VHF radio](https://en.wikipedia.org/wiki/Marine_VHF_radio) from automatic [AIS transponders](https://en.wikipedia.org/wiki/Automatic_identification_system#/media/File:Ships_AIS_display_with_lists_of_nearby_vessels.jpg) on pretty much all major ships, boats and other marine vessels. This is done in order to let other vessels,
 satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically
 sent out every 3-180 seconds and have a maximum range of 65 km.
 
