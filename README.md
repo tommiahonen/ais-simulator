@@ -29,7 +29,7 @@ km.
 
 ![image.png](./assets/uvms-screenshot.png)
 
-<b>Screenshot 1</b> - A map with ships that are transmitting AIS messages. Screenshot from UVMS application. </b>
+<b>Screenshot 1</b> - A map with ships that are transmitting AIS messages. Screenshot from UVMS application (not the server simulator). </b>
 
 </div>
 
