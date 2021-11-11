@@ -14,7 +14,7 @@ within this repository.
 
 # More background: What is the AIS-simulator and what is it used for?
 
-Automatic Identification System (AIS) messages are short automatic status messages broadcast from automatic transponders on ships, boats and other marine vessels using radiowaves (Marine VHF). This is done in order to let other vessels, satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically sent out every 3-180 seconds and have a maximum range 65 km. 
+Automatic Identification System (AIS) messages are short automatic status messages broadcast from automatic transponders on ships, boats and other marine vessels using radiowaves (Marine VHF). This is done in order to let other vessels, satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically sent out every 3-180 seconds and have a maximum range of 65 km. 
 
 An AIS server is a server that is a repository for retransitting such AIS messages, in near realtime, via a REST interface to applications that are otherwise unable to receive AIS messages (they don't have an antenna or are out of range of the original transmission).
 
