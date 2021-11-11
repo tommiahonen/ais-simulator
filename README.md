@@ -1,38 +1,57 @@
 # AIS Server Simulator
 
 A simple AIS server simulator for
-the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview) which is a large open source project for monitoring commercial fishing activities on European waters.
+the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview) which is a large
+open source project for monitoring commercial fishing activities on European waters.
 
-This AIS-server simulator provides
-simulated AIS-messages to the UVMS application.
+This AIS-server simulator provides simulated AIS-messages to the UVMS application.
 
-The AIS-server simulator has a simple administration page (see screenshot below) from which the simulator can be
+The AIS-server simulator has a simple administration page (see [screenshot](#how-to-access-administration-page)) from which the simulator can be
 controlled.
 
-Please note: The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is not contained
-within this repository.
+### My Multi Word Header
 
-# More background: What is an AIS server and why do we need to simulate its functionality?
+Please note: The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is
+not contained within this repository.
 
-But first, we need to know what AIS messages are. 
+# What on earth is an AIS server? And why do we need to simulate its functionality?
 
-*[Automatic Identification System](https://en.wikipedia.org/wiki/Automatic_identification_system)* (AIS) messages are short, automatic, status messages broadcast wirelessly using [marine VHF radio](https://en.wikipedia.org/wiki/Marine_VHF_radio) from automatic [AIS transponders](https://en.wikipedia.org/wiki/Automatic_identification_system#/media/File:Ships_AIS_display_with_lists_of_nearby_vessels.jpg) on pretty much all major ships, boats and other marine vessels. This is done in order to let other vessels,
-satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically
-sent out every 3-180 seconds and have a maximum range of 65 km.
+But before we answer that, we first need to know what AIS messages are.
 
-After a satellite or landbased radio antenna has intercepted an AIS message, the message contents are eventually forwarded to an "AIS server". An AIS server is a centralized repository of intercepted/recieved AIS messages. Whenever the server receives a new AIS message it immediatelly rentransmits it to its REST interface. And from this REST interface, applications that are otherwise unable to receive AIS messages (probably because they don't have an antenna or are out of range of the original transmission) are able to fetch th message more or less in realtime.
+*[Automatic Identification System](https://en.wikipedia.org/wiki/Automatic_identification_system)* (AIS) messages are
+short, automatic, status messages broadcast wirelessly
+using [marine VHF radio](https://en.wikipedia.org/wiki/Marine_VHF_radio) from
+automatic [AIS transponders](https://en.wikipedia.org/wiki/Automatic_identification_system#/media/File:Ships_AIS_display_with_lists_of_nearby_vessels.jpg)
+on pretty much all major ships, boats and other marine vessels. This is done in order to let other vessels, satellites
+and landbased stations know their geographic location, course, destination etc. AIS-messages are typically sent out
+every 3-180 seconds and have a maximum range of 65
+km.
 
-Similarly to the AIS server, the simulated AIS server i.e. the *AIS Server Simulator*, is also a server that can send out AIS messages using a REST interface to other
-applications. However instead of sending out real AIS messages that actual boats/vessels have previously sent out, the
-AIS server simulator instead sends out "fake" AIS messages that it reads from a local file. This is useful especially
-when testing an application that uses IAS traffic since you can use specific set of predefined IAS-messages e.g. when
-testing some specific marine traffic scenario.
+After a satellite or landbased radio antenna has intercepted an AIS message, the message contents are eventually
+forwarded to an "AIS server". An AIS server is a centralized repository of intercepted/recieved AIS messages. Whenever
+the server receives a new AIS message it immediatelly rentransmits it to its REST interface. And from this REST
+interface, applications that are otherwise unable to receive AIS messages (probably because they don't have an antenna
+or are out of range of the original transmission) are able to fetch th message more or less in realtime.
+
+Similarly to the AIS server, the simulated AIS server i.e. the *AIS Server Simulator*, is also a server that can send
+out AIS messages using a REST interface to other applications. However instead of sending out real AIS messages that
+actual boats/vessels have previously sent out, the AIS server simulator instead sends out "fake" AIS messages that it
+reads from a local file. This is useful especially when testing an application that uses IAS traffic since you can use
+specific set of predefined IAS-messages e.g. when testing some specific marine traffic scenario.
+
+<div style="text-align: center">
+
+![image.png](./assets/uvms-screenshot.png)
+
+<b>Screenshot 2</b> - A map with ships that are transitting AIS messages. Screenshot from UVMS application. </b>
+
+</div>
 
 # High-level overview of simulator interacting with UVMS application
 
-This diagram is meant mainly to describe the operation and implementation structure of the AIS-server simulator. However it also contains an overly
-simplified - and thus not completely accurate - model of the UVMS application (in the upper right-hand corner of the
-diagram).
+This diagram is meant mainly to describe the operation and implementation structure of the AIS-server simulator. However
+it also contains an overly simplified - and thus not completely accurate - model of the UVMS application (in the upper
+right-hand corner of the diagram).
 
 <div style="text-align: center">
 
@@ -102,8 +121,8 @@ There is also Swagger UI available for the REST interface at http://localhost:80
 
 This application currently works only in Linux (and Mac?).
 
-In Microsoft Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a path that works
-in Windows e.g. `C:\temp\uvms`. That change will have to be made in the following three files:
+In Microsoft Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a path
+that works in Windows e.g. `C:\temp\uvms`. That change will have to be made in the following three files:
 
 * /pom.xml
 * /src/main/webapp/WEB-INF/web.xml
@@ -122,5 +141,5 @@ This issue seems to not be present on Linux.
 
 # Future development
 
-Create a docker image for this simulator that runs in e.g. Arch linux so that we can avoid the complications that 
-occur when running the project in different operating systems, in particular Microsoft Windows.
+Create a docker image for this simulator that runs in e.g. Arch linux so that we can avoid the complications that occur
+when running the project in different operating systems, in particular Microsoft Windows.
