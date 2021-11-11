@@ -90,10 +90,10 @@ Both of these things you can do from the AIS-simulator admin page at http://loca
 
 # Where to get .csv datafiles for the simulator
 
-CSV datafiles can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g.
+CSV datafiles containing historical AIS messages can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g.
 the [FileZilla client](https://filezilla-project.org/) or better yet: [curl](https://curl.se). 
 
-Each .csv file contains all AIS messages sent during 24 hours (from 00:00 to 23:59) of that specific date/day.
+Each .csv file contains all AIS messages sent during a 24 hour timeperiod (from 00:00 to 23:59) of that specific date/day.
 
 # Connecting to simulator from client
 
