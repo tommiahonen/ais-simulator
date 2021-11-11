@@ -12,6 +12,14 @@ controlled.
 The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is not contained
 within this repository.
 
+# More background: What is the AIS-simulator and what is it used for?
+
+AIS-messages are short automatic status messages broadcast using radiowaves (Marine VHF) from ships, boats and other marine vessels in order to let other vessels, satellites and landbased stations know their geographic location, course, destination etc. AIS-messages are typically sent out every 3-180 seconds and have a maximum range 65 km. 
+
+An AIS server is a server that is a repository for retransitting such AIS messages, in near realtime, via a REST interface to applications that are otherwise unable to receive AIS messages (they don't have an antenna or are out of range of the original transmission).
+
+An AIS-server simulator is similarily a server that can send out AIS messages using a REST interface to other applications. However instead of sending out real AIS-messages that actual boats/vessels have previously sent out, it instead sends out "fake" AIS messages that it reads from a local file. This is useful especially for testing an application that uses IAS traffic with a specific set of IAS-messages.
+
 # High-level overview of simulator interacting with UVMS application
 
 This diagram is meant mainly to describe the operation of the AIS-server simulator. However it also contains an overly
