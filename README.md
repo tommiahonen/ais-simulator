@@ -25,7 +25,7 @@ km.
 
 ![image.png](./assets/uvms-screenshot.png)
 
-<b>Screenshot 1</b> - A map showing ships whose positions and bearings have been extracted from AIS messages. Before that the AIS messages themselves were read from the REST interface of an AIS server. Screenshot from browser based frontend of the UVMS application (i.e. not the AIS Server Simulator). </b>
+<b>Screenshot 1</b> - *A map showing ships whose positions and bearings have been extracted from AIS messages. Before that the AIS messages themselves were read from the REST interface of an AIS server. Screenshot from browser based frontend of the UVMS application (i.e. not the AIS Server Simulator).* </b>
 
 </div>
 
@@ -51,7 +51,7 @@ right-hand corner of the diagram).
 
 ![simulator-structure.png](./assets/simulator-structure.png)
 
-<b>Diagram 1</b> - AIS-server simulator high-level structure. Please note: this is not a UML-diagram.</b>
+<b>Diagram 1</b> - *AIS-server simulator high-level structure. Please note: this is not a UML-diagram.*</b>
 
 </div>
 
@@ -75,7 +75,7 @@ screenshot below) where you can do the following:
 
 ![image.png](./assets/simulator-screenshot.png)
 
-<b>Screenshot 2</b> - AIS-server simulator administration page.
+<b>Screenshot 2</b> - *Administration page of AIS Server Simulator.*
 
 </div>
 
