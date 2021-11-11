@@ -7,9 +7,9 @@ This AIS-server simulator provides simulated AIS-messages to the UVMS applicatio
 
 Please note: The UVMS application is not contained in this repository. It can however be found [here](https://github.com/UnionVMS/).
 
-# What on earth is an AIS server? And why do we need to simulate its functionality?
+# But what on earth is an AIS server? And why do we need to simulate its functionality?
 
-But before we answer that, we first need to know what AIS messages are.
+Before we answer that we first need to know what AIS messages are.
 
 *[Automatic Identification System](https://en.wikipedia.org/wiki/Automatic_identification_system)* (AIS) messages are
 short, automatic, status messages broadcast wirelessly
