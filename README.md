@@ -55,13 +55,13 @@ right-hand corner of the diagram).
 
 </div>
 
-# How to build & run AIS Server simulator
+# How to build & run simulator
 
 Build with `mvn clean install`, this creates a fat jar with embedded Payara Micro Enterprise server.
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
 
-# How to access administration page of AIS Server simulator
+# How to access administration page of simulator
 
 After that open http://localhost:8080/ in your web browser. This will display the "*AIS-simulator admin page*" (see
 screenshot below) where you can do the following:
