@@ -35,7 +35,7 @@ km.
 
 After a satellite or landbased radio antenna has intercepted an AIS message, the message contents are eventually
 forwarded to an "AIS server". An AIS server is a centralized repository of intercepted/recieved AIS messages. Whenever
-the server receives a new AIS message it immediatelly rentransmits it to its REST interface. And from this REST
+the AIS server receives a new AIS message it immediatelly rentransmits it to its REST interface. And from this REST
 interface, applications that are otherwise unable to receive AIS messages (probably because they don't have an antenna
 or are out of range of the original transmission) are able to fetch th message more or less in realtime.
 
