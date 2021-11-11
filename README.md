@@ -9,9 +9,7 @@ This AIS-server simulator provides simulated AIS-messages to the UVMS applicatio
 The AIS-server simulator has a simple administration page (see [screenshot](#how-to-access-administration-page)) from which the simulator can be
 controlled.
 
-### My Multi Word Header
-
-Please note: The UVMS application is a completely separate project ([GitHub link](https://github.com/UnionVMS/)) and is
+Please note: The UVMS application is a completely separate project ([on GitHub ](https://github.com/UnionVMS/)) and is
 not contained within this repository.
 
 # What on earth is an AIS server? And why do we need to simulate its functionality?
