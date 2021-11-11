@@ -18,7 +18,7 @@ AIS-messages are short automatic status messages broadcast using radiowaves (Mar
 
 An AIS server is a server that is a repository for retransitting such AIS messages, in near realtime, via a REST interface to applications that are otherwise unable to receive AIS messages (they don't have an antenna or are out of range of the original transmission).
 
-An AIS-server simulator is similarily a server that can send out AIS messages using a REST interface to other applications. However instead of sending out real AIS-messages that actual boats/vessels have previously sent out, it instead sends out "fake" AIS messages that it reads from a local file. This is useful especially for testing an application that uses IAS traffic with a specific set of IAS-messages.
+An AIS-server simulator is similarily a server that can send out AIS messages using a REST interface to other applications. However instead of sending out real AIS-messages that actual boats/vessels have previously sent out, it instead sends out "fake" AIS messages that it reads from a local file. This is useful especially when testing an application that uses IAS traffic with a specific set of predefined IAS-messages e.g. when testing some specific marine traffic scenario.
 
 # High-level overview of simulator interacting with UVMS application
 
