@@ -39,7 +39,7 @@ Similarly to the AIS server, the simulated AIS server i.e. the *AIS Server Simul
 out AIS messages using a REST interface to other applications. However instead of sending out real AIS messages that
 actual boats/vessels have previously sent out, the AIS server simulator instead sends out "fake" AIS messages that it
 reads from a local file. This is useful especially when testing an application that uses IAS traffic since you can use
-specific set of predefined IAS-messages e.g. when testing some specific marine traffic scenario.
+specific set of predefined AIS-messages e.g. when testing some specific marine traffic scenario.
 
 # High-level overview of simulator interacting with UVMS application
 
