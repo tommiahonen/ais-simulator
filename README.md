@@ -124,5 +124,4 @@ This issue seems to not be present on Linux.
 # Future development
 
 Create a docker image for this simulator that runs in e.g. Arch linux so that we
-
 can avoid complications in use of diffrent operating systems, in particular windows.
