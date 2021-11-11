@@ -1,13 +1,9 @@
 # AIS Server Simulator
 
-A simple AIS server simulator for
-the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview) which is a large
-open source project for monitoring commercial fishing activities on European waters.
+A simple AIS server simulator for the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview) 
+which is a large open source project for monitoring commercial fishing activities on European waters.
 
-This AIS-server simulator provides simulated AIS-messages to the UVMS application.
-
-The AIS-server simulator has a simple administration page (see [screenshot](#how-to-access-administration-page)) from which the simulator can be
-controlled.
+This AIS-server simulator provides simulated AIS-messages to the UVMS application backend.
 
 Please note: The UVMS application is not contained in this repository. It can however be found [here](https://github.com/UnionVMS/).
 
@@ -29,7 +25,7 @@ km.
 
 ![image.png](./assets/uvms-screenshot.png)
 
-<b>Screenshot 1</b> - A map with ships whose positions and bearings have been extracted from AIS messages. Screenshot from UVMS application (not the server simulator). </b>
+<b>Screenshot 1</b> - A map with ships whose positions and bearings have been extracted from AIS messages. Screenshot from UVMS application (not the AIS Server Simulator). </b>
 
 </div>
 
