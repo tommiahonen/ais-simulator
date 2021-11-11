@@ -103,7 +103,7 @@ There is also Swagger UI available for the REST interface at http://localhost:80
 
 This application currently works only in Linux (and Mac?).
 
-On Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a path that works
+In Microsoft Windows you will have to change the path of the temporary download directory from `/temp/uvms` to a path that works
 in Windows e.g. `C:\temp\uvms`. That change will have to be made in the following three files:
 
 * /pom.xml
