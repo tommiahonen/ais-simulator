@@ -33,7 +33,7 @@ After a satellite or landbased radio antenna has intercepted an AIS message, the
 forwarded to an "AIS server". An AIS server is a centralized repository of intercepted/recieved AIS messages. Whenever
 the AIS server receives a new AIS message it immediatelly rentransmits it to its REST interface. And from this REST
 interface, applications that are otherwise unable to receive AIS messages e.g. UVMS application (probably because they don't have an antenna
-or are out of range of the original transmission) are able to fetch the message more or less in realtime.
+or are out of range of the original transmission) are now able to fetch the message more or less in realtime.
 
 Similarly to the AIS server, the simulated AIS server i.e. the *AIS Server Simulator*, is also a server that can send
 out AIS messages using a REST interface to other applications. However instead of sending out real AIS messages that
