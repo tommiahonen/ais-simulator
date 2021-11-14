@@ -4,7 +4,7 @@ A simple AIS server simulator for the [Union Vessel Monitoring System (UVMS)](ht
 
 UVMS is a large open source project for monitoring and auditing commercial fishing activities on European waters.
 
-This simulator provides mock/simulated AIS-messages to the UVMS application backend. The AIS simulator server is made up of a browser/HTML frontend and a J2EE/REST backend.
+This simulator provides mock/simulated AIS-messages to the UVMS application backend. The AIS simulator server is made up of a browser/HTML frontend and a J2EE/OpenAPI REST backend.
 
 Please note: The UVMS application is not contained in this repository. It can however be found [here](https://github.com/UnionVMS/).
 
