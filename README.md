@@ -16,13 +16,15 @@ Build with `mvn clean install`.
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
 
-After that you can access the web UI from http://localhost:8080.
+After that you can access the web UI from http://localhost:8080. 
 
-P.S. In case you don't have any AIS files, you can download one using `wget https://web.ais.dk/aisdata/aisdk-2021-08-01.zip` and then run `unzip aisdk-2021-08-01.zip`.
+In case you don't have any AIS files, you can download one using `wget https://web.ais.dk/aisdata/aisdk-2021-08-01.zip` and then run `unzip aisdk-2021-08-01.zip`.
+
+Once simulator state has been changed to "Started", clients can start to connect to it on http://localhost:8040.
 
 ## Web UI
 
-The web UI at http://localhost:8080/ makes it possible to:
+A web UI at http://localhost:8080/ makes it possible to:
 - change simulator state:
   - start streaming of AIS data, or resume streaming if stream is currently paused.  
   - stop streaming of AIS data (stop stream and disconnect all currently connected clients) 
