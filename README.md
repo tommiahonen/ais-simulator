@@ -1,14 +1,87 @@
 # AIS Server Simulator
 
-A simple AIS server simulator for the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview).
-
-UVMS is a large open source project for monitoring and auditing commercial fishing activities on European waters.
-
-This simulator provides mock/simulated AIS-messages to the UVMS application backend. The AIS simulator server is made up of a browser/HTML frontend and a J2EE/OpenAPI REST backend.
+A simple [AIS](https://en.wikipedia.org/wiki/Automatic_identification_system) server simulator for the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview).
 
 Please note: The UVMS application is not contained in this repository. It can however be found [here](https://github.com/UnionVMS/).
 
-# But what on earth is an AIS server? And why do we need to simulate its functionality?
+# What it does
+
+Microservice that exposes a HTTP endpoint on port 8040 that streams simulated real-time AIS-data. External clients can connect to this endpoint and consume AIS-data from it as if it were a real AIS-server. AIS-data is read from a local file.
+
+There is also a simple web UI implemented in HTML and JavaScript from which the simulator can be controlled.
+
+# How to build & run simulator
+
+Build with `mvn clean install`.
+
+Run with `java -jar target/ais-simulator-microbundle.jar`.
+
+## REST API
+
+The microservice contains a REST API which makes it possible to:
+- upload new AIS files
+- select which AIS file is currently being streamed to clients
+- start, stop and pause the current stream
+- make the stream contain only every nth value in the file
+
+The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
+
+There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
+
+## Web UI
+
+There is also a web UI which makes it possible to perform the same operations as from the REST API.
+
+The web UI can be accesed from http://localhost:8080/
+
+<div style="text-align: center">
+
+![image.png](./assets/simulator-screenshot.png)
+
+<b>Screenshot 2</b> - *Administration page of AIS Server Simulator.*
+
+</div>
+
+## Nth position value
+
+In order to reduce the rate at which data is streamed to clients, the AIS-data stream can be made to contain only every Nth position value (e.g. Nth=3 will stream only every 3rd AIS value and Nth=1 will stream every single AIS value).
+
+# Before you press "Start"
+
+Please note: You can only start up the AIS-simulator from the admin page after you have first done the following:
+
+1. uploaded at least one .csv datafile to the AIS-simulator server
+2. selected which datafile the AIS-simulator should read from when it is running.
+
+Both of these things you can do from the AIS-simulator admin page at http://localhost:8080/.
+
+# Implementation
+
+This microservice is a Jakarta EE application built on top of the [MicroProfile](https://microprofile.io) microservice framework. The project is built into a self-sufficient JAR which contains both classes and dependencies needed to run the application. Included in that JAR is [Payara Micro Enterprise](https://www.payara.fish/products/payara-micro/), a Jakarta EE server, in which the application runs.
+
+# High-level overview of simulator interacting with UVMS application
+
+This diagram is meant mainly to describe the operation and implementation structure of the AIS-server simulator. However
+it also contains an overly simplified - and thus not completely accurate - model of the UVMS application (in the upper
+right-hand corner of the diagram).
+
+<div style="text-align: center">
+
+![simulator-structure.png](./assets/simulator-structure.png)
+
+<b>Diagram 1</b> - *AIS-server simulator high-level structure. Please note: this is not a UML-diagram.*</b>
+
+</div>
+
+# Where to get more AIS datafiles
+
+Datafiles containing historical AIS messages can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g.
+the [FileZilla client](https://filezilla-project.org/) or better yet: [curl](https://curl.se).
+
+Each .csv file contains all AIS messages sent during a 24 hour timeperiod (from 00:00 to 23:59) of that specific date/day.
+
+
+# Backround: What is an AIS server and why do we need to simulate its functionality?
 
 Before we answer that we first need to know what AIS messages are.
 
@@ -42,79 +115,23 @@ actual boats/vessels have previously sent out, the AIS server simulator instead 
 reads from a local file. This is useful especially when testing an application that uses IAS traffic since you can use
 specific set of predefined AIS-messages e.g. when testing some specific marine traffic scenario.
 
-# High-level overview of simulator interacting with UVMS application
 
-This diagram is meant mainly to describe the operation and implementation structure of the AIS-server simulator. However
-it also contains an overly simplified - and thus not completely accurate - model of the UVMS application (in the upper
-right-hand corner of the diagram).
 
-<div style="text-align: center">
 
-![simulator-structure.png](./assets/simulator-structure.png)
 
-<b>Diagram 1</b> - *AIS-server simulator high-level structure. Please note: this is not a UML-diagram.*</b>
 
-</div>
+# Unresolved issues:
 
-# How to build & run simulator
+## Unresolved issues #1
 
-Build with `mvn clean install`, this creates a fat jar with embedded Payara Micro Enterprise server.
-
-Run with `java -jar target/ais-simulator-microbundle.jar`.
-
-# How to access administration page of simulator
-
-After that open http://localhost:8080/ in your web browser. This will display the "*AIS-simulator admin page*" (see
-screenshot below) where you can do the following:
-
-* select which .csv datafile AIS-simulator should use when it is running
-* upload new .csv datafiles to the simulator
-* start, stop and pause the AIS-simulator
-* select which nth value the simulator should use when it is running. E.g. if nth value=3 only every third AIS message will be realyed to the REST interface. If nth value=1 every single message will be relayed to the REST interface.
-
-<div style="text-align: center">
-
-![image.png](./assets/simulator-screenshot.png)
-
-<b>Screenshot 2</b> - *Administration page of AIS Server Simulator.*
-
-</div>
-
-# Before you press "Start"
-
-Please note: You can only start up the AIS-simulator from the admin page after you have first done the following:
-
-1. uploaded at least one .csv datafile to the AIS-simulator server
-2. selected which datafile the AIS-simulator should read from when it is running.
-
-Both of these things you can do from the AIS-simulator admin page at http://localhost:8080/.
-
-# Where to get .csv datafiles for the simulator
-
-CSV datafiles containing historical AIS messages can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g.
-the [FileZilla client](https://filezilla-project.org/) or better yet: [curl](https://curl.se). 
-
-Each .csv file contains all AIS messages sent during a 24 hour timeperiod (from 00:00 to 23:59) of that specific date/day.
-
-# Connecting to simulator from client
-
-Once the AIS-simulator is up and running clients can connect to it using port 8040 e.g. http://localhost:8040/.
-
-# Uploaded files are deleted when OS is rebooted?
+Uploaded files are deleted when OS is rebooted?
 
 Uploaded files are currently stored in `/tmp/uvms`. In Linux this folder and all files contained within it are
 automatically deleted once the OS is rebooted.
 
 On Windows this doesn't happen and any uploaded files will remain even after the OS is restarted.
 
-# REST interface
-
-The admin page for the AIS-simulator server uses a REST interface to communicate with/configure the AIS-simulator server
-itself. The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
-
-There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
-
-# Unresolved issues #1
+## Unresolved issues #2
 
 This application currently works only in Linux (and Mac?).
 
@@ -125,7 +142,7 @@ that works in Windows e.g. `C:\temp\uvms`. That change will have to be made in t
 * /src/main/webapp/WEB-INF/web.xml
 * /src/main/java/se/havochvatten/unionvms/rest/AisServerState.java
 
-# Unresolved issues #2
+## Unresolved issues #3
 
 Another issue on Windows is that you may get a `java.net.SocketException: Protocol family not supported` thrown by the
 JVM if you try to connect (from the client) to url http://localhost:8040/. This issue may be related to running Docker
