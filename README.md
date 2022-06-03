@@ -1,6 +1,6 @@
 # AIS Server Simulator
 
-A simple [AIS](https://en.wikipedia.org/wiki/Automatic_identification_system) server simulator for the [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview).
+A simple [AIS](https://en.wikipedia.org/wiki/Automatic_identification_system) server simulator for an application called [Union Vessel Monitoring System (UVMS)](https://focusfish.atlassian.net/wiki/spaces/UVMS/overview).
 
 Please note: The UVMS application is not contained in this repository. It can however be found [here](https://github.com/UnionVMS/).
 
