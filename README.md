@@ -4,9 +4,9 @@ A simple [AIS](https://en.wikipedia.org/wiki/Automatic_identification_system) se
 
 Please note: The UVMS application is not contained in this repository. It can however be found [here](https://github.com/UnionVMS/).
 
-# What it does
+# Functionality
 
-Microservice that exposes a HTTP endpoint on port 8040 that streams simulated real-time AIS-data. External clients can connect to this endpoint and consume AIS-data from it as if it were a real AIS-server. AIS-data is read from a local file.
+This is application a microservice that exposes a HTTP endpoint on port 8040 that streams simulated real-time AIS-data. External clients can connect to this endpoint and consume AIS-data from it as if it were a real AIS-server. AIS-data is read from a local file.
 
 There is also a simple web UI implemented in HTML and JavaScript from which the simulator can be controlled.
 
