@@ -16,23 +16,20 @@ Build with `mvn clean install`.
 
 Run with `java -jar target/ais-simulator-microbundle.jar`.
 
-## REST API
+After that you can access the web UI from http://localhost:8080.
 
-The microservice contains a REST API which makes it possible to:
-- upload new AIS files
-- select which AIS file is currently being streamed to clients
-- start, stop and pause the current stream
-- make the stream contain only every nth value in the file
-
-The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
-
-There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
+P.S. In case you don't have any AIS files, you can download one using `wget https://web.ais.dk/aisdata/aisdk-2021-08-01.zip` and then run `unzip aisdk-2021-08-01.zip`.
 
 ## Web UI
 
-There is also a web UI which makes it possible to perform the same operations as from the REST API.
-
-The web UI can be accesed from http://localhost:8080/
+There is a web UI http://localhost:8080/ which makes it possible to:
+- change simulator state:
+  - start streaming of AIS data, or resume streaming if stream is currently paused.  
+  - stop streaming of AIS data (stop stream and disconnect all currently connected clients) 
+  - pause streaming of AIS data (pause stream but retain connection to all currently connected clients)
+- make the stream contain only every nth value in the file
+- upload new AIS files (.csv datafile)
+- select which AIS file is currently being streamed to clients
 
 <div style="text-align: center">
 
@@ -41,6 +38,14 @@ The web UI can be accesed from http://localhost:8080/
 <b>Screenshot 2</b> - *Administration page of AIS Server Simulator.*
 
 </div>
+
+## REST API
+
+The microservice contains a REST API which makes it possible to perform the same operations as from the web UI.
+
+The OpenAPI specification for that REST interface is available at http://localhost:8080/openapi.
+
+There is also Swagger UI available for the REST interface at http://localhost:8080/rest/openapi-ui/.
 
 ## Nth position value
 
@@ -53,7 +58,15 @@ Please note: You can only start up the AIS-simulator from the admin page after y
 1. uploaded at least one .csv datafile to the AIS-simulator server
 2. selected which datafile the AIS-simulator should read from when it is running.
 
-Both of these things you can do from the AIS-simulator admin page at http://localhost:8080/.
+Both of these things you can do from the AIS-simulator admin page at http://localhost:8080.
+
+After this each client that connects to http://localhost:8040 will be able to receive its own stream of AIS-data.
+
+# Where can I download more AIS datafiles?
+
+Datafiles containing historical AIS messages can be downloaded from https://web.ais.dk/aisdata/.
+
+Each .csv file contains all AIS messages sent during a 24 hour timeperiod (from 00:00 to 23:59) of that specific date/day.
 
 # Implementation
 
@@ -72,13 +85,6 @@ right-hand corner of the diagram).
 <b>Diagram 1</b> - *AIS-server simulator high-level structure. Please note: this is not a UML-diagram.*</b>
 
 </div>
-
-# Where to get more AIS datafiles
-
-Datafiles containing historical AIS messages can be downloaded from [ftp://ftp.ais.dk/ais_data/](ftp://ftp.ais.dk/ais_data/) using e.g.
-the [FileZilla client](https://filezilla-project.org/) or better yet: [curl](https://curl.se).
-
-Each .csv file contains all AIS messages sent during a 24 hour timeperiod (from 00:00 to 23:59) of that specific date/day.
 
 
 # Backround: What is an AIS server and why do we need to simulate its functionality?
