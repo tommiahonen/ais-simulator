@@ -22,12 +22,12 @@ P.S. In case you don't have any AIS files, you can download one using `wget http
 
 ## Web UI
 
-There is a web UI http://localhost:8080/ which makes it possible to:
+The web UI at http://localhost:8080/ makes it possible to:
 - change simulator state:
   - start streaming of AIS data, or resume streaming if stream is currently paused.  
   - stop streaming of AIS data (stop stream and disconnect all currently connected clients) 
   - pause streaming of AIS data (pause stream but retain connection to all currently connected clients)
-- make the stream contain only every nth value in the file
+- make the stream contain only every Nth value in the file
 - upload new AIS files (.csv datafile)
 - select which AIS file is currently being streamed to clients
 
