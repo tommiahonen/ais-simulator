@@ -51,7 +51,7 @@ There is also Swagger UI available for the REST interface at http://localhost:80
 
 In order to reduce the rate at which data is streamed to clients, the AIS-data stream can be made to contain only every Nth position value (e.g. Nth=3 will stream only every 3rd AIS value and Nth=1 will stream every single AIS value).
 
-# Before you press "Start"
+# Before you press "Start" in web UI
 
 Please note: You can only start up the AIS-simulator from the admin page after you have first done the following:
 
